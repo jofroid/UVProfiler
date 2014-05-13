@@ -1,7 +1,7 @@
 #ifndef TSH_H
 #define TSH_H
 
-class TSH : public UV
+class TSH
 {
 public:
     TSH();
