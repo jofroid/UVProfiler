@@ -1,12 +1,9 @@
 #include <QApplication>
 #include <QPushButton>
+#include <iostream>
 
 int main(int argc, char *argv[])
 {
-    QApplication app(argc, argv);
-
-    QPushButton bouton("Salut les Zéros, la forme ?");
-    bouton.show();
-
-    return app.exec();
+   std::cout<<"Swag de poule !"<<std::endl;
+   return 0;
 }
