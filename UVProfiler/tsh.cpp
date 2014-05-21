@@ -1,5 +1,6 @@
 #include "tsh.h"
 
-TSH::TSH()
+TSH::TSH(LigneTSH ligneTSH, ColonneTSH colonneTSH) : _ligneTSH(ligneTSH), _colonneTSH(colonneTSH)
 {
+
 }
