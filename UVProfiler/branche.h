@@ -3,12 +3,10 @@
 
 #include "cursus.h"
 
-<<<<<<< HEAD
 enum ColonneTSH { DemarchesEtPratiques, Connaissances     };
 enum LigneTSH   { Concevoir, Communiquer, OrganiserManager};
 
-=======
->>>>>>> b4cea66fd537d8e5787e6f826dcda9fedacbdf1e
+
 class Branche: public Cursus
 {
 private:
