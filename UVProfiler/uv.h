@@ -11,7 +11,7 @@ using namespace std;
 
 enum Saison { P, A, PA, X };
         // faudrait vérifier si ya pas une convention de nommage des enum... (genre commencer par une maj)
-        // X signifie que l'UV n'est plus dispo, après modifie si t'as une meilleur valeure à mettre.
+        // X signifie que l'UV n'est plus dispo, après modifie si t'as une meilleur valeur à mettre.
 
 class UV
 {

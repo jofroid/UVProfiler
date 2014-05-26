@@ -1,4 +1,5 @@
 QT += widgets core gui sql
+QT += core
 
 SOURCES += \
     main.cpp \
