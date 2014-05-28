@@ -37,12 +37,15 @@ public:
     }
 
     // Getters
-    const QString& getNom()const             { return _nom;            }
-    const QString& getCode()const            { return _code;           }
-    Saison getSaison()const           { return _saison;         }
-    QVector<Cursus*> getCursus()const { return _cursusAssocies; }
-    const EnsCredits& getCredit()const       { return _creditsDelivres; }
+    const QString& getNom()const            { return _nom;            }
+    const QString& getCode()const           { return _code;           }
+    Saison getSaison()const                 { return _saison;         }
+    QVector<Cursus*> getCursus()const       { return _cursusAssocies; }
+    const EnsCredits& getCredit()const      { return _creditsDelivres;}
     virtual const QString& getCategorie()=0;
+
+    //Autres méthodes
+
 };
 
 #endif // UV_H
