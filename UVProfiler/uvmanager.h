@@ -27,8 +27,6 @@ private:
     ~UVManager();
 
     QMap<QString, UV*> _uvs;
-    //unsigned int _nbUV;
-    //unsigned int _nbMaxUV;
     QString _file;
     enum typeOuverture _ouverture;
     bool _modification;

@@ -6,7 +6,7 @@
 #include <QMessageBox>
 
 
-UVManager::UVManager():uvs(0),nbUV(0),nbMaxUV(0),file(""),modification(false){}
+UVManager::UVManager():_file(""), _ouverture(DB), _modification(false){}
 
 /* construction fichier... � enlever */
 /*
@@ -224,6 +224,9 @@ const UV& UVManager::getUV(const QString& code)const{
     return const_cast<UVManager*>(this)->getUV(code);
         // on peut aussi dupliquer le code de la methode non-const
 }
+
+void UVManager::saveToDB() const{}
+void UVManager::saveToFile() const{}
 
 UVManager::Handler UVManager::handler=Handler();
 

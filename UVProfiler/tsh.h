@@ -7,10 +7,10 @@
 class TSH : public UV
 {
 protected:
-    LigneTSH    _ligneTSH;
+    LigneTSH   _ligneTSH;
     ColonneTSH _colonneTSH;
 public:
-    TSH(LigneTSH ligneTSH, ColonneTSH colonneTSH);
+    TSH(const QString n, const QString c, const Saison s, const LigneTSH ligneTSH, const ColonneTSH colonneTSH);
 
     // setters
     void setLigneTSH(LigneTSH ligneTSH)         { _ligneTSH = ligneTSH;     }

@@ -57,7 +57,7 @@ bool EnsCredits::operator==(const EnsCredits& right) const{
     return _creditsCS == right.CS()
     && _creditsTM == right.TM()
     && _creditsTSH == right.TSH()
-    && _creditsSP == right.SP()
+    && _creditsSP == right.SP();
 }
 
 
