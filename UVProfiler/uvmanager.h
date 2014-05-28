@@ -1,45 +1,81 @@
 #ifndef UVMANAGER_H
 #define UVMANAGER_H
 
-/*
+#include <QString>
+#include <QMap>
+#include "uv.h"
+#include "cs.h"
+#include "tm.h"
+#include "tsh.h"
+#include "sp.h"
+
 class UTProfilerException{
 public:
-    UTProfilerException(const QString& message):info(message){}
-    QString getInfo() const { return info; }
+   UTProfilerException(const QString& message):info(message){}
+   QString getInfo() const { return info; }
 private:
-    QString info;
+   QString info;
 };
+
+enum typeOuverture { fichier, DB };
 
 class UVManager {
 private:
-    UV** uvs;
-    unsigned int nbUV;
-    unsigned int nbMaxUV;
-    void addItem(UV* uv);
-    bool modification;
-    UV* trouverUV(const QString& c) const;
     UVManager(const UVManager& um);
     UVManager& operator=(const UVManager& um);
     UVManager();
     ~UVManager();
-    QString file;
+
+    QMap<QString, UV*> _uvs;
+    //unsigned int _nbUV;
+    //unsigned int _nbMaxUV;
+    QString _file;
+    enum typeOuverture _ouverture;
+    bool _modification;
+
+    void addItem(UV* uv);
+    void saveToDB() const;
+    void saveToFile() const;
+    void loadFromDB();
+    void loadFromFile();
+
     friend struct Handler;
     struct Handler{
-        UVManager* instance;
-        Handler():instance(0){}
-        ~Handler(){ if (instance) delete instance; instance=0; }
+       UVManager* instance;
+       Handler():instance(0){}
+       ~Handler(){ if (instance) delete instance; instance=0; }
     };
     static Handler handler;
-
 public:
+    void load(const QString& f)
+    {
+    if(_ouverture == fichier)
+        loadFromFile();
+    else if(_ouverture == DB )
+        loadFromDB();
+    }
+    void save(const QString& f)
+    {
+    if(_ouverture == fichier)
+        saveToFile();
+    else if(_ouverture == DB)
+        saveToDB();
+    }
 
-    void load(const QString& f);
-    void save(const QString& f);
+    //Setters
+    /*
+    QMap<QString, UV*> _uvs;
+    unsigned int _nbUV;
+    unsigned int _nbMaxUV;
+    QString _file;
+    enum typeOuverture _ouverture;
+    */
+
     static UVManager& getInstance();
     static void libererInstance();
-    void ajouterUV(const QString& c, const QString& t, unsigned int nbc, Categorie cat, bool a, bool p);
+    void ajouterUV(const QString& c, const QString& t, const Saison s, const QString& cat);
     const UV& getUV(const QString& code) const;
     UV& getUV(const QString& code);
 };
-*/
+
 #endif // UVMANAGER_H
