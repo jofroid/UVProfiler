@@ -8,6 +8,7 @@ class CS: public UV
 {
 public:
     CS(const QString n, const QString c, const Saison s): UV::UV(n, c, s){}
+    virtual const QString& getCategorie() {return "CS";}
 };
 
 #endif // CS_H

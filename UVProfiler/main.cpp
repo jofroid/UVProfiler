@@ -2,12 +2,25 @@
 #include <QPushButton>
 #include <iostream>
 #include <QtSql>
-#include "enscredits.h"
+#include "uvmanager.h"
+#include "uv.h"
+
 
 #define q2c(string) string.toStdString()
 
 int main(int argc,char **argv)
 {
+
+    UVManager& manager = UVManager::getInstance();
+    manager.setOuvertureDB();
+    manager.ajouterUV("BL01", "La Bio", PA, "CS");
+    manager.ajouterUV("TN01", "CAO", PA, "TM");
+    UV& uvTest = manager.getUV("BL01");
+    std::cout<<uvTest.getNom().toStdString()<<std::endl;
+    manager.save();
+
+
+  /*
   QApplication app(argc,argv);
 
   //Création de la DB
@@ -38,8 +51,7 @@ int main(int argc,char **argv)
           QString req = "INSERT INTO UV VALUES('";
           // split every lines on comma
           QStringList line = ts.readLine().split(',');
-          /*for every values on a line,
-            append it to the INSERT request*/
+          //for every values on a line, append it to the INSERT request
           for(int i=0; i<line.length();++i){
               req.append(line.at(i));
               req.append("','");
@@ -76,6 +88,7 @@ int main(int argc,char **argv)
 
   db.commit();
   db.close();
+  */
   return 0;
 }
 

@@ -23,14 +23,13 @@ private:
     EnsCredits _creditsDelivres;
 public:
     UV(const QString n, const QString c, const Saison s): _nom(n), _code(c), _saison(s), _cursusAssocies(0), _creditsDelivres(0){}
-    virtual ~UV()=0;
 
     // Setters
-    void setCredits(const EnsCredits credits)      { _creditsDelivres = credits;    }
-    void setNom(const QString& nom)                 { _nom = nom;                    }
-    void setCode(const QString& code)               { _code = code;                  }
-    void setSaison(Saison saison)            { _saison = saison;              }
-    void addCursus(Cursus* cursus)           { _cursusAssocies.push_back(cursus); }
+    void setCredits(const EnsCredits credits)   { _creditsDelivres = credits;    }
+    void setNom(const QString& nom)             { _nom = nom;                    }
+    void setCode(const QString& code)           { _code = code;                  }
+    void setSaison(Saison saison)               { _saison = saison;              }
+    void addCursus(Cursus* cursus)              { _cursusAssocies.push_back(cursus); }
     void removeCursus(Cursus* cursus) {
             int i = _cursusAssocies.indexOf(cursus);
             if(i!=-1)
@@ -38,11 +37,12 @@ public:
     }
 
     // Getters
-    QString getNom()const             { return _nom;            }
-    QString getCode()const            { return _code;           }
+    const QString& getNom()const             { return _nom;            }
+    const QString& getCode()const            { return _code;           }
     Saison getSaison()const           { return _saison;         }
     QVector<Cursus*> getCursus()const { return _cursusAssocies; }
-    EnsCredits getCredit()const       { return _creditsDelivres; }
+    const EnsCredits& getCredit()const       { return _creditsDelivres; }
+    virtual const QString& getCategorie()=0;
 };
 
 #endif // UV_H

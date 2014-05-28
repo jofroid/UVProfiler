@@ -8,6 +8,7 @@
 #include "tm.h"
 #include "tsh.h"
 #include "sp.h"
+#include <QtSql>
 
 class UTProfilerException{
 public:
@@ -45,15 +46,13 @@ private:
     };
     static Handler handler;
 public:
-    void load(const QString& f)
-    {
+    void load(){
     if(_ouverture == fichier)
         loadFromFile();
     else if(_ouverture == DB )
         loadFromDB();
     }
-    void save(const QString& f)
-    {
+    void save(){
     if(_ouverture == fichier)
         saveToFile();
     else if(_ouverture == DB)
@@ -68,6 +67,10 @@ public:
     QString _file;
     enum typeOuverture _ouverture;
     */
+    typeOuverture getOuverture()const   {return _ouverture;}
+    void setOuvertureFichier()  {_ouverture = fichier;}
+    void setOuvertureDB()  {_ouverture = DB;}
+
 
     static UVManager& getInstance();
     static void libererInstance();

@@ -10,16 +10,17 @@ protected:
     LigneTSH   _ligneTSH;
     ColonneTSH _colonneTSH;
 public:
-    TSH(const QString n, const QString c, const Saison s, const LigneTSH ligneTSH, const ColonneTSH colonneTSH);
+    TSH(const QString n, const QString c, const Saison s, const LigneTSH ligneTSH=Communiquer, const ColonneTSH colonneTSH=Connaissances);
+    virtual const QString& getCategorie() {return "TSH";}
 
     // setters
-    void setLigneTSH(LigneTSH ligneTSH)         { _ligneTSH = ligneTSH;     }
-    void setColonneTSH(ColonneTSH colonneTSH)   { _colonneTSH = colonneTSH; }
+    void setLigneTSH(const LigneTSH ligneTSH)         { _ligneTSH = ligneTSH;     }
+    void setColonneTSH(const ColonneTSH colonneTSH)   { _colonneTSH = colonneTSH; }
     // j'ai pas surchargé setCredit, j'ai considéré qu'on pouvait avoir autrechose que des credits TSH
 
     // getters
-    LigneTSH getLigneTSH()   { return _ligneTSH;    }
-    ColonneTSH getColonneTSh() { return _colonneTSH;  }
+    LigneTSH getLigneTSH()const   { return _ligneTSH;    }
+    ColonneTSH getColonneTSh()const { return _colonneTSH;  }
 };
 
 #endif // TSH_H
