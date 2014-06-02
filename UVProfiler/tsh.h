@@ -11,7 +11,7 @@ protected:
     ColonneTSH _colonneTSH;
 public:
     TSH(const QString n, const QString c, const Saison s, const LigneTSH ligneTSH=Communiquer, const ColonneTSH colonneTSH=Connaissances);
-    virtual const QString& getCategorie() {return "TSH";}
+    virtual const QString getCategorie() {return "TSH";}
 
     // setters
     void setLigneTSH(const LigneTSH ligneTSH)         { _ligneTSH = ligneTSH;     }

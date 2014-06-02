@@ -3,6 +3,7 @@
 #include <iostream>
 #include <QtSql>
 #include "uvmanager.h"
+#include "cursusmanager.h"
 #include "uv.h"
 
 
@@ -18,6 +19,7 @@ int main(int argc,char **argv)
     UV& uvTest = manager.getUV("BL01");
     std::cout<<uvTest.getNom().toStdString()<<std::endl;
     manager.save();
+    CursusManager& coucou = CursusManager::getInstance();
 
 
   /*

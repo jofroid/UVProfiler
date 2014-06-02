@@ -22,7 +22,7 @@ private:
     QVector<Cursus*> _cursusAssocies;
     EnsCredits _creditsDelivres;
 public:
-    UV(const QString n, const QString c, const Saison s): _nom(n), _code(c), _saison(s), _cursusAssocies(0), _creditsDelivres(0){}
+    UV(const QString nom, const QString code, const Saison saison): _nom(nom), _code(code), _saison(saison), _cursusAssocies(0), _creditsDelivres(0){}
 
     // Setters
     void setCredits(const EnsCredits credits)   { _creditsDelivres = credits;    }
@@ -42,7 +42,7 @@ public:
     Saison getSaison()const                 { return _saison;         }
     QVector<Cursus*> getCursus()const       { return _cursusAssocies; }
     const EnsCredits& getCredit()const      { return _creditsDelivres;}
-    virtual const QString& getCategorie()=0;
+    virtual const QString getCategorie()=0;
 
     //Autres méthodes
 

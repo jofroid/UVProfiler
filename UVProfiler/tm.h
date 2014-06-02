@@ -8,7 +8,7 @@ class TM: public UV
 {
 public:
     TM(const QString n, const QString c, const Saison s): UV::UV(n, c, s){}
-    virtual const QString& getCategorie() {return "TM";}
+    virtual const QString getCategorie() {return "TM";}
 };
 
 #endif // TM_H

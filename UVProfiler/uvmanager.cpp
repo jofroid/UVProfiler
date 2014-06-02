@@ -26,32 +26,32 @@ UV& UVManager::getUV(const QString& code){
     throw UTProfilerException(QString("erreur, l'UV ")+code+QString(" n'existe pas"));
 }
 
-void UVManager::ajouterUV(const QString& c, const QString& t, const Saison s, const QString& cat){
-    if (_uvs.find(c) != _uvs.end())
-        throw UTProfilerException(QString("erreur, UVManager, UV ")+c+QString(" deja existante"));
+void UVManager::ajouterUV(const QString& code, const QString& nom, const Saison saison, const QString& categorie) {
+    if (_uvs.find(code) != _uvs.end())
+        throw UTProfilerException(QString("erreur, UVManager, UV ")+code+QString(" deja existante"));
     else{
-        if(cat == "CS"){
-            CS* newuv = new CS(t, c, s);
+        if(categorie == "CS"){
+            CS* newuv = new CS(nom, code, saison);
             addItem(newuv);
             _modification=true;
         }
-        else if(cat == "TM"){
-            TM* newuv = new TM(t, c, s);
+        else if(categorie == "TM"){
+            TM* newuv = new TM(nom, code, saison);
             addItem(newuv);
             _modification=true;
         }
-        else if(cat == "TSH"){
-            CS* newuv = new CS(t, c, s);
+        else if(categorie == "TSH"){
+            CS* newuv = new CS(nom, code, saison);
             addItem(newuv);
             _modification=true;
         }
-        else if(cat == "SP"){
-            SP* newuv = new SP(t, c, s);
+        else if(categorie == "SP"){
+            SP* newuv = new SP(nom, code, saison);
             addItem(newuv);
             _modification=true;
         }
         else
-            throw UTProfilerException(QString("erreur, UVManager, categorie ")+cat+QString(" n'existe pas"));
+            throw UTProfilerException(QString("erreur, UVManager, categorie ")+categorie+QString(" n'existe pas"));
     }
 }
 
@@ -81,7 +81,6 @@ void UVManager::saveToDB()const{
                     "SP             INT                          );");
 
     QMap<QString, UV*>::const_iterator it;
-
     for( it = _uvs.begin(); it != _uvs.end(); it++){
         result.exec("INSERT INTO UV (CODE, NOM, CATEGORIE, SAISON) VALUES ('"+it.value()->getCode()+"','"+it.value()->getNom()+"','"+it.value()->getCategorie()+"','"+it.value()->getSaison()+"')" );
     }

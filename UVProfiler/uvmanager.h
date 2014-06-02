@@ -47,34 +47,32 @@ private:
     static Handler handler;
 public:
     void load(){
-    if(_ouverture == fichier)
-        loadFromFile();
-    else if(_ouverture == DB )
-        loadFromDB();
-    }
+        if(_ouverture == fichier)
+            loadFromFile();
+        else if(_ouverture == DB )
+            loadFromDB();
+        }
     void save(){
-    if(_ouverture == fichier)
-        saveToFile();
-    else if(_ouverture == DB)
-        saveToDB();
-    }
+        if(_ouverture == fichier)
+            saveToFile();
+        else if(_ouverture == DB)
+            saveToDB();
+        }
 
-    //Setters
-    /*
-    QMap<QString, UV*> _uvs;
-    unsigned int _nbUV;
-    unsigned int _nbMaxUV;
-    QString _file;
-    enum typeOuverture _ouverture;
-    */
-    typeOuverture getOuverture()const   {return _ouverture;}
-    void setOuvertureFichier()  {_ouverture = fichier;}
-    void setOuvertureDB()  {_ouverture = DB;}
+    //       Setters
+    // QMap<QString, UV*> _uvs;
+    // unsigned int _nbUV;
+    // unsigned int _nbMaxUV;
+    // QString _file;
+    // enum typeOuverture _ouverture;
 
+    typeOuverture getOuverture()const   { return _ouverture;     }
+    void setOuvertureFichier()          { _ouverture = fichier;  }
+    void setOuvertureDB()               { _ouverture = DB;       }
 
     static UVManager& getInstance();
     static void libererInstance();
-    void ajouterUV(const QString& c, const QString& t, const Saison s, const QString& cat);
+    void ajouterUV(const QString& code, const QString& nom, const Saison saison, const QString& categorie);
     const UV& getUV(const QString& code) const;
     UV& getUV(const QString& code);
 };
