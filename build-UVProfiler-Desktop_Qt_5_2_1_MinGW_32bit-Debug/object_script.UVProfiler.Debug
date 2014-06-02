@@ -22,4 +22,5 @@ INPUT(
 ./debug\decorateurmineur.o
 ./debug\uvobligatoires.o
 ./debug\selectionxparmisy.o
+./debug\etudiantmanager.o
 );

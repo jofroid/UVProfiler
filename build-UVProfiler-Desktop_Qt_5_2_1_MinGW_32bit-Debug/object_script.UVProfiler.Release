@@ -22,4 +22,5 @@ INPUT(
 ./release\decorateurmineur.o
 ./release\uvobligatoires.o
 ./release\selectionxparmisy.o
+./release\etudiantmanager.o
 );

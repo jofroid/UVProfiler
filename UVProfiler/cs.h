@@ -7,7 +7,7 @@
 class CS: public UV
 {
 public:
-    CS(const QString n, const QString c, const Saison s): UV::UV(n, c, s){}
+    CS(const QString n, const QString c, const Saison s, const unsigned int credits): UV::UV(n, c, s){   getCredit().setCS(credits); }
     virtual const QString getCategorie() {return QString("CS");}
 };
 

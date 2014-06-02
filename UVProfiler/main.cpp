@@ -14,12 +14,14 @@ int main(int argc,char **argv)
 
     UVManager& manager = UVManager::getInstance();
     manager.setOuvertureDB();
-    manager.ajouterUV("BL01", "La Bio", PA, "CS");
-    manager.ajouterUV("TN01", "CAO", PA, "TM");
+    manager.ajouterUV("BL01", "La Bio", PA, "CS", 6);
+    manager.ajouterUV("TN01", "CAO", PA, "TM", 6);
     UV& uvTest = manager.getUV("BL01");
     std::cout<<uvTest.getNom().toStdString()<<std::endl;
     manager.save();
-    CursusManager& coucou = CursusManager::getInstance();
+    manager.afficherListe();
+    manager.load();
+    //CursusManager& coucou = CursusManager::getInstance();
 
 
   /*

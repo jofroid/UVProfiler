@@ -39,9 +39,10 @@ public:
     // Getters
     const QString& getNom()const            { return _nom;            }
     const QString& getCode()const           { return _code;           }
-    Saison getSaison()const                 { return _saison;         }
+    QString getSaison()const;
     QVector<Cursus*> getCursus()const       { return _cursusAssocies; }
     const EnsCredits& getCredit()const      { return _creditsDelivres;}
+    EnsCredits& getCredit()                 { return _creditsDelivres;}
     virtual const QString getCategorie()=0;
 
     //Autres méthodes

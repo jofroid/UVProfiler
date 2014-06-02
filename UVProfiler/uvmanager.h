@@ -72,9 +72,10 @@ public:
 
     static UVManager& getInstance();
     static void libererInstance();
-    void ajouterUV(const QString& code, const QString& nom, const Saison saison, const QString& categorie);
+    void ajouterUV(const QString& code, const QString& nom, const Saison saison, const QString& categorie, unsigned int credits);
     const UV& getUV(const QString& code) const;
     UV& getUV(const QString& code);
+    void afficherListe();
 };
 
 #endif // UVMANAGER_H
