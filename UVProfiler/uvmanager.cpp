@@ -5,6 +5,8 @@
 #include <QTextCodec>
 //#include <QtXml>
 #include <QMessageBox>
+#include <ctime>
+#include <windows.h>
 
 
 UVManager::UVManager():_file(""), _ouverture(DB), _modification(false){}
@@ -12,8 +14,6 @@ UVManager::UVManager():_file(""), _ouverture(DB), _modification(false){}
 UVManager::~UVManager(){
     if (_file != "")
         save();
-    //for(unsigned int i=0; i<nbUV; i++) delete uvs[i];
-    //delete[] uvs;
 }
 
 void UVManager::addItem(UV* uv){
@@ -71,7 +71,7 @@ void UVManager::saveToDB()const{
     QSqlQuery result;
     QString query;
     //result.exec("DROP TABLE UV");
-    //result.exec("DROP TABLE TSH");
+    result.exec("DROP TABLE TSH");
     result.exec("CREATE TABLE IF NOT EXISTS UV (" \
                     "CODE           CHAR(10) PRIMARY KEY NOT NULL," \
                     "NOM            TEXT                 NOT NULL," \
@@ -150,15 +150,13 @@ void UVManager::loadFromDB(){
             for( int ra=0; result2.next(); ra++ ){
                 for( int ca=0; ca<cols2; ca++ )
                     qDebug() << QString( "Row %1, %2: %3" ).arg( ra ).arg( rec2.fieldName(ca) ).arg( result2.value(ca).toString() );
-                std::cout<<result2.value(2).toString().toStdString()<<std::endl;
-                UV& tsh = manager.getUV(result2.value(0).toString());
-                tsh.setColonneTSH(result2.value(2).toString());
-                std::cout<<tsh.getColonneTSH().toStdString()<<std::endl;
+
+                std::cout<<"1: "<<result2.value(2).toString().toStdString()<<std::endl;
+                manager.getUV(result2.value(0).toString()).setColonneTSH(result2.value(2).toString());
+                //tsh.setColonneTSH(result2.value(2).toString());
+                //std::cout<<"2: "<<tsh.getColonneTSH().toStdString()<<std::endl;
                 //manager.getUV(result2.value(0).toString()).setColonneTSH(result2.value(2).toString());
             }
-
-            //
-            //
         }
     }
 

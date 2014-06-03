@@ -14,7 +14,7 @@ const QString TSH::getLigneTSH(){
 }
 const QString TSH::getColonneTSH(){
     switch(_colonneTSH){
-    case 0: return "DemarchesEtPratique"; break;
+    case 0: return "DemarchesEtPratiques"; break;
     case 1: return "Connaissances"; break;
     }
 }
@@ -33,7 +33,7 @@ void TSH::setLigneTSH(const QString& ligneTSH){
 void TSH::setColonneTSH(const QString& colonneTSH){
     if(colonneTSH == "DemarchesEtPratiques")
         _colonneTSH = DemarchesEtPratiques;
-    else if(colonneTSH == "Connaissances")
+    else if(colonneTSH == "Connaissance")
         _colonneTSH = Connaissances;
     else
         UTProfilerException (QString("erreur TSH : la colonne ")+colonneTSH+QString(" n'existe pas"));
