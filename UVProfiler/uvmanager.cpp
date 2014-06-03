@@ -27,9 +27,9 @@ UV& UVManager::getUV(const QString& code){
 }
 
 void UVManager::ajouterUV(const QString& code, const QString& nom, const Saison saison, const QString& categorie, unsigned int credits) {
-    if (_uvs.find(code) != _uvs.end())
-        throw UTProfilerException(QString("erreur, UVManager, UV ")+code+QString(" deja existante"));
-    else{
+    //if(_uvs.find(code) == _uvs.end())
+        //throw UTProfilerException(QString("erreur, UVManager, UV ")+code+QString(" deja existante"));
+    //else{
         if(categorie == "CS"){
             CS* newuv = new CS(nom, code, saison, credits);
             addItem(newuv);
@@ -41,7 +41,7 @@ void UVManager::ajouterUV(const QString& code, const QString& nom, const Saison 
             _modification=true;
         }
         else if(categorie == "TSH"){
-            CS* newuv = new CS(nom, code, saison, credits);
+            TSH* newuv = new TSH(nom, code, saison, credits);
             addItem(newuv);
             _modification=true;
         }
@@ -52,7 +52,7 @@ void UVManager::ajouterUV(const QString& code, const QString& nom, const Saison 
         }
         else
             throw UTProfilerException(QString("erreur, UVManager, categorie ")+categorie+QString(" n'existe pas"));
-    }
+    //}
 }
 
 const UV& UVManager::getUV(const QString& code)const{
@@ -70,7 +70,8 @@ void UVManager::saveToDB()const{
 
     QSqlQuery result;
     QString query;
-    result.exec("DROP TABLE UV");
+    //result.exec("DROP TABLE UV");
+    //result.exec("DROP TABLE TSH");
     result.exec("CREATE TABLE IF NOT EXISTS UV (" \
                     "CODE           CHAR(10) PRIMARY KEY NOT NULL," \
                     "NOM            TEXT                 NOT NULL," \
@@ -80,6 +81,13 @@ void UVManager::saveToDB()const{
                     "TM             INT                          ," \
                     "TSH            INT                          ," \
                     "SP             INT                          );");
+    query = "CREATE TABLE IF NOT EXISTS TSH (" \
+                    "CODEUV       CHAR(10)  PRIMARY KEY NOT NULL," \
+                    "LIGNE      TEXT        NOT NULL,"\
+                    "COLONNE    TEXT        NOT NULL," \
+                    "FOREIGN KEY(CODEUV) REFERENCES UV(CODE) );";
+    if(result.exec(query))
+        std::cout<<"TSH cree"<<std::endl;
 
     QMap<QString, UV*>::const_iterator it;
     for( it = _uvs.begin(); it != _uvs.end(); it++){
@@ -94,6 +102,14 @@ void UVManager::saveToDB()const{
                     "'"+QString::number(it.value()->getCredit().SP())+"')";
         if( !result.exec(query) )
           qDebug() << result.lastError();
+        if(it.value()->getCategorie() == "TSH"){
+            query = "INSERT INTO TSH VALUES(" \
+                        "'"+it.value()->getCode()+"'," \
+                        "'"+it.value()->getLigneTSH()+"',"
+                        "'"+it.value()->getColonneTSH()+"')";
+        }
+        if( !result.exec(query) )
+          qDebug() << result.lastError();
     }
     db.commit();
     db.close();
@@ -105,32 +121,112 @@ void UVManager::loadFromDB(){
     if(db.open())
       std::cout<<"UVPROFILER.db opened!"<<std::endl;
 
-    QSqlQuery result;
-    QString query;
+    QSqlQuery result, result2;
+    QString query, query2;
 
-    QMap<QString, UV*>::const_iterator it;
-    for( it = _uvs.begin(); it != _uvs.end(); it++){
-        query = "SELECT * FROM UV;";
-        if( !result.exec(query) )
-            qDebug() << result.lastError();
-        else
-            qDebug() << "Chargement en cours...";
+    query = "SELECT * FROM UV WHERE CATEGORIE = 'TSH';";
+    if( !result.exec(query) )
+        qDebug() << result.lastError();
+    else{
+        qDebug( "Selection des TSH" );
 
+        QSqlRecord rec = result.record();
+        QSqlRecord rec2;
+        int cols = rec.count();
+        int cols2;
+        UVManager& manager = UVManager::getInstance();
 
+        for( int r=0; result.next(); r++ ){
+            for( int c=0; c<cols; c++ )
+                qDebug() << QString( "Row %1, %2: %3" ).arg( r ).arg( rec.fieldName(c) ).arg( result.value(c).toString() );
+            manager.ajouterUV(result.value(0).toString(), result.value(1).toString(), UV::getSaison(result.value(2).toString()), "TSH", result.value(4).toInt());
+            query2 = "SELECT * FROM TSH WHERE CODEUV = '"+result.value(0).toString()+"';";
+            if( !result2.exec(query2))
+                qDebug() << result2.lastError();
+            else
+                qDebug( "Selection des Lignes/Colonnes TSH" );
+            rec2 = result2.record();
+            cols2 = rec2.count();
+            for( int ra=0; result2.next(); ra++ ){
+                for( int ca=0; ca<cols2; ca++ )
+                    qDebug() << QString( "Row %1, %2: %3" ).arg( ra ).arg( rec2.fieldName(ca) ).arg( result2.value(ca).toString() );
+                std::cout<<result2.value(2).toString().toStdString()<<std::endl;
+                UV& tsh = manager.getUV(result2.value(0).toString());
+                tsh.setColonneTSH(result2.value(2).toString());
+                std::cout<<tsh.getColonneTSH().toStdString()<<std::endl;
+                //manager.getUV(result2.value(0).toString()).setColonneTSH(result2.value(2).toString());
+            }
+
+            //
+            //
+        }
+    }
+
+    query = "SELECT * FROM UV WHERE CATEGORIE = 'CS';";
+    if( !result.exec(query) )
+        qDebug() << result.lastError();
+    else{
+        qDebug( "Selection des CS" );
+
+        QSqlRecord rec = result.record();
+        int cols = rec.count();
+        UVManager& manager = UVManager::getInstance();
+
+        for( int r=0; result.next(); r++ ){
+              for( int c=0; c<cols; c++ ){
+                qDebug() << QString( "Row %1, %2: %3" ).arg( r ).arg( rec.fieldName(c) ).arg( result.value(c).toString() );
+                manager.ajouterUV(result.value(0).toString(), result.value(1).toString(), UV::getSaison(result.value(2).toString()), "CS", result.value(4).toInt());
+              }
+        }
+    }
+
+    query = "SELECT * FROM UV WHERE CATEGORIE = 'TM';";
+    if( !result.exec(query) )
+        qDebug() << result.lastError();
+    else{
+        qDebug( "Selection des TM" );
+
+        QSqlRecord rec = result.record();
+        int cols = rec.count();
+        UVManager& manager = UVManager::getInstance();
+
+        for( int r=0; result.next(); r++ ){
+              for( int c=0; c<cols; c++ ){
+                    qDebug() << QString( "Row %1, %2: %3" ).arg( r ).arg( rec.fieldName(c) ).arg( result.value(c).toString() );
+                    manager.ajouterUV(result.value(0).toString(), result.value(1).toString(), UV::getSaison(result.value(2).toString()), "TM", result.value(4).toInt());
+              }
+        }
+    }
+
+    query = "SELECT * FROM UV WHERE CATEGORIE = 'SP';";
+    if( !result.exec(query) )
+        qDebug() << result.lastError();
+    else{
+        qDebug( "Selection des SP" );
+
+        QSqlRecord rec = result.record();
+        int cols = rec.count();
+        UVManager& manager = UVManager::getInstance();
+
+        for( int r=0; result.next(); r++ ){
+              for( int c=0; c<cols; c++ ){
+                qDebug() << QString( "Row %1, %2: %3" ).arg( r ).arg( rec.fieldName(c) ).arg( result.value(c).toString() );
+                manager.ajouterUV(result.value(0).toString(), result.value(1).toString(), UV::getSaison(result.value(2).toString()), "SP", result.value(4).toInt());
+              }
+        }
     }
     db.commit();
     db.close();
 }
 
-
-void UVManager::afficherListe(){
+void UVManager::afficherTable(const QString& table){
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName("./UVPROFILER.db");
     if(db.open())
       std::cout<<"UVPROFILER.db opened!"<<std::endl;
 
     QSqlQuery result;
-    result.prepare( "SELECT * FROM UV" );
+    result.prepare( "SELECT * FROM "+table+"" );
       if( !result.exec() )
         qDebug() << result.lastError();
       else

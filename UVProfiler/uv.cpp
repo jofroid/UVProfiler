@@ -19,3 +19,14 @@ QString UV::getSaison()const{
     return result;
 }
 
+Saison UV::getSaison(const QString& saison){
+    if(saison == "P")
+        return P;
+    else if (saison == "A")
+        return A;
+    else if (saison == "PA")
+        return PA;
+    else
+        return X;
+}
+

@@ -3,10 +3,11 @@
 
 #include "uv.h"
 #include "branche.h" // contient les enum LigneTSH et ColonneTSH
+#include "uvmanager.h"
 
 class TSH : public UV
 {
-protected:
+private:
     LigneTSH   _ligneTSH;
     ColonneTSH _colonneTSH;
 public:
@@ -14,13 +15,14 @@ public:
     virtual const QString getCategorie() {return "TSH";}
 
     // setters
-    void setLigneTSH(const LigneTSH ligneTSH)         { _ligneTSH = ligneTSH;     }
-    void setColonneTSH(const ColonneTSH colonneTSH)   { _colonneTSH = colonneTSH; }
-    // j'ai pas surchargé setCredit, j'ai considéré qu'on pouvait avoir autrechose que des credits TSH
+    void setLigneTSH(const LigneTSH ligneTSH)           { _ligneTSH = ligneTSH;     }
+    void setColonneTSH(const ColonneTSH colonneTSH)     { _colonneTSH = colonneTSH; }
+    void setLigneTSH(const QString& ligneTSH);
+    void setColonneTSH(const QString& colonneTSH);
 
     // getters
-    LigneTSH getLigneTSH()const   { return _ligneTSH;    }
-    ColonneTSH getColonneTSh()const { return _colonneTSH;  }
+    const QString getLigneTSH();
+    const QString getColonneTSH();
 };
 
 #endif // TSH_H

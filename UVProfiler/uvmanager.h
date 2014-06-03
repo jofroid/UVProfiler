@@ -75,7 +75,7 @@ public:
     void ajouterUV(const QString& code, const QString& nom, const Saison saison, const QString& categorie, unsigned int credits);
     const UV& getUV(const QString& code) const;
     UV& getUV(const QString& code);
-    void afficherListe();
+    void afficherTable(const QString& table);
 };
 
 #endif // UVMANAGER_H

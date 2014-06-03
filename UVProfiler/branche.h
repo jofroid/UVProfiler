@@ -6,7 +6,6 @@
 enum ColonneTSH { DemarchesEtPratiques, Connaissances     };
 enum LigneTSH   { Concevoir, Communiquer, OrganiserManager};
 
-
 class Branche: public Cursus
 {
 private:
