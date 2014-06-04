@@ -1,23 +1,25 @@
 #ifndef CURSUS_H
 #define CURSUS_H
-#include <iostream>
+
 #include "enscredits.h"
+#include <iostream>
+#include <QString>
 
 
 class Cursus
 {
 private:
-    std::string _nom;
-    std::string _code;
-    std::string _description;
+    QString _nom;
+    QString _code;
+    QString _description;
     EnsCredits _creditsNecessaires;
 public:
-    Cursus(const std::string& n, const std::string& c, const std::string& d, const EnsCredits cn=0 ): _nom(n), _code(c), _description(d), _creditsNecessaires(cn){}
+    Cursus(const QString& nom, const QString& code, const QString& description, const EnsCredits creditNecessaires=0 ): _nom(nom), _code(code), _description(description), _creditsNecessaires(creditNecessaires) {}
     virtual ~Cursus()=0; //comme je n'ai pas de méthode virtuelle pour le moment, le destructeur fera l'affaire
-    void setNom(const std::string& n)           {_nom = n;}
-    void setCode(const std::string& c)          {_code = c;}
-    void setDescription(const std::string& d)   {_description = d;}
-    void setEnsCredits(const EnsCredits& cn)    {_creditsNecessaires = cn;}
+    void setNom(const QString& nom)                     {_nom = nom;}
+    void setCode(const QString& code)                   {_code = code;}
+    void setDescription(const QString& description)     {_description = description;}
+    void setEnsCredits(const EnsCredits& creditsNedessaires){_creditsNecessaires = creditsNedessaires;}
 };
 
 

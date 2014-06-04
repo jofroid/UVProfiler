@@ -70,8 +70,8 @@ void UVManager::saveToDB()const{
 
     QSqlQuery result;
     QString query;
-    //result.exec("DROP TABLE UV");
-    result.exec("DROP TABLE TSH");
+    //result.exec("DROP TABLE UV;");
+    result.exec("DROP TABLE TSH;");
     result.exec("CREATE TABLE IF NOT EXISTS UV (" \
                     "CODE           CHAR(10) PRIMARY KEY NOT NULL," \
                     "NOM            TEXT                 NOT NULL," \
@@ -134,7 +134,7 @@ void UVManager::loadFromDB(){
         QSqlRecord rec2;
         int cols = rec.count();
         int cols2;
-        UVManager& manager = UVManager::getInstance();
+        UVManager& manager = UVManager::getInstance(); // tu peux utiliser *this à la place non ?
 
         for( int r=0; result.next(); r++ ){
             for( int c=0; c<cols; c++ )

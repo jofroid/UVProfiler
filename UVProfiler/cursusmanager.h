@@ -13,6 +13,9 @@ private:
     static CursusManager* _instance;
     CursusManager();
     void load();
+    void loadBranche(); // Si on rajoute un nouveau cursus, on a juste à rajouter une fonction ici
+    void loadFiliere();
+    void loadPostBac();
 public:
     ~CursusManager() {}
     static CursusManager& getInstance();
