@@ -136,7 +136,7 @@ void UVManager::loadFromDB(){
         int cols2;
         UVManager& manager = UVManager::getInstance(); // tu peux utiliser *this à la place non ?
 
-        for( int r=0; result.next(); r++ ){
+        for( int r=0; result.next(); r++) {
             for( int c=0; c<cols; c++ )
                 qDebug() << QString( "Row %1, %2: %3" ).arg( r ).arg( rec.fieldName(c) ).arg( result.value(c).toString() );
             manager.ajouterUV(result.value(0).toString(), result.value(1).toString(), UV::getSaison(result.value(2).toString()), "TSH", result.value(4).toInt());

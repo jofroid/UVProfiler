@@ -52,8 +52,8 @@ void CursusManager::loadBranche() {
 
     QString query("SELECT c.code, c.nom, c.description, c.saison, c.CS, c.TM, c.TSH, c.SP, b. creditPCBNecessaire\
                   FROM cursus c, branche b\
-                  WHERE c.code = b.code")
-
+                  WHERE c.code = b.code");
+/*
     if(! result.exec(qery))
             qDebug() << result.lastError();
     else{
@@ -62,9 +62,13 @@ void CursusManager::loadBranche() {
         int colonnes = rec.count();
 
         for(int c(0); c<colonnes; c++) {
-
+            EnsCredits credit(result.value(1)).;
         }
-    }
+    }*/
+
+
+    db.commit();
+    db.close();
 }
 
 void CursusManager::loadFiliere() {
@@ -80,9 +84,9 @@ void CursusManager::loadFiliere() {
                     "branche           CHAR(10) NOT NULL REFERENCES branche(code),"
                     "creditPCFNecessaire INT             NOT NULL);");
 
-    QString query("SELECT * FROM ")
+    QString query("SELECT * FROM filiere");
 
-    if(! result.exec(qery))
+    if(! result.exec(query))
             qDebug() << result.lastError();
     else{
         qDebug( "Chargement des branches" );
@@ -93,6 +97,11 @@ void CursusManager::loadFiliere() {
 
         }
     }
+
+    db.commit();
+    db.close();
 }
 
-void CursusManager::loadPostBac()
+void CursusManager::loadPostBac() {
+
+}

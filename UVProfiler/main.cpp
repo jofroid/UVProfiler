@@ -13,6 +13,7 @@
 int main(int argc,char **argv)
 {
 try{
+    if(false) {
         UVManager& manager = UVManager::getInstance();
         manager.setOuvertureDB();
         //manager.ajouterUV("BL01", "La Bio", PA, "CS", 6);
@@ -41,6 +42,11 @@ try{
 
         //uvTest = manager.getUV("TN01");
         //std::cout<<uvTest.getNom().toStdString()<<std::endl;
+    }
+
+    else {
+
+    }
 
     }
     catch (UTProfilerException utpe) {std::cout<<utpe.getInfo().toStdString()<<std::endl;}
