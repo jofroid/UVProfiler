@@ -1,6 +1,8 @@
 #ifndef ENSCREDITS_H
 #define ENSCREDITS_H
 
+#include <QVariant>
+
 class EnsCredits
 {
 private:
@@ -10,18 +12,22 @@ private:
     unsigned int _creditsSP;
 
 public:
-    EnsCredits():_creditsCS(0), _creditsTM(0), _creditsTSH(0), _creditsSP(0){}
+    //EnsCredits():_creditsCS(0), _creditsTM(0), _creditsTSH(0), _creditsSP(0){}
     EnsCredits(unsigned int CS=0, unsigned int TM=0, unsigned int TSH=0, unsigned int SP=0)
-        :_creditsCS(CS), _creditsTM(TM), _creditsTSH(TSH), _creditsSP(SP){}
+        :_creditsCS(CS), _creditsTM(TM), _creditsTSH(TSH), _creditsSP(SP) {}
+    EnsCredits(const EnsCredits& copie);
+    ~EnsCredits() {}
+
     void setCS(unsigned int i)      {   _creditsCS = i;     }
     void setTM(unsigned int i)      {   _creditsTM = i;     }
     void setTSH(unsigned int i)     {   _creditsTSH = i;    }
     void setSP(unsigned int i)      {   _creditsSP = i;     }
-    unsigned int CS() const   {   return _creditsCS;  }
-    unsigned int TM() const   {   return _creditsTM;  }
-    unsigned int TSH() const  {   return _creditsTSH; }
-    unsigned int SP() const   {   return _creditsSP;  }
+    unsigned int CS() const         {   return _creditsCS;  }
+    unsigned int TM() const         {   return _creditsTM;  }
+    unsigned int TSH() const        {   return _creditsTSH; }
+    unsigned int SP() const         {   return _creditsSP;  }
 
+    static void initEnsCreditsSystem();
 
     void afficheEnsCredits() const;
     EnsCredits operator+(const EnsCredits& source) const;
@@ -30,7 +36,13 @@ public:
     EnsCredits& operator/=(const unsigned int denominateur);
     void operator=(const EnsCredits& right);
     bool operator==(const EnsCredits& right) const;
+
+    friend QDataStream& operator<< (QDataStream&, const EnsCredits&);
+    friend QDataStream& operator>> (QDataStream&, EnsCredits&);
 };
 
+Q_DECLARE_METATYPE(EnsCredits)
+QDataStream& operator<< (QDataStream& out, const EnsCredits& Valeur);
+QDataStream& operator>> (QDataStream& in, EnsCredits& Valeur);
 
 #endif // ENSCREDITS_H

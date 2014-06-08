@@ -90,7 +90,7 @@ void UVManager::saveToDB()const{
         std::cout<<"TSH cree"<<std::endl;
 
     QMap<QString, UV*>::const_iterator it;
-    for( it = _uvs.begin(); it != _uvs.end(); it++){
+    for( it = _uvs.constBegin(); it != _uvs.constEnd(); it++){
         query = "INSERT INTO UV (CODE, NOM, CATEGORIE, SAISON, CS, TM, TSH, SP) VALUES ("\
                     "'"+it.value()->getCode()+"'," \
                     "'"+it.value()->getNom()+"'," \
@@ -251,11 +251,15 @@ void UVManager::loadFromFile(){}
 UVManager::Handler UVManager::handler=Handler();
 
 UVManager& UVManager::getInstance(){
-    if (!handler.instance) handler.instance = new UVManager; /* instance creee une seule fois lors de la premiere utilisation*/
+    // aainstance creee une seule fois lors de la premiere utilisation
+    if (!handler.instance) handler.instance = new UVManager;
     return *handler.instance;
 }
 
 void UVManager::libererInstance(){
-    if (handler.instance) { delete handler.instance; handler.instance=0; }
+    if (handler.instance) {
+        delete handler.instance;
+        handler.instance=0;
+    }
 }
 
