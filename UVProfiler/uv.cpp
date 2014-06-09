@@ -3,16 +3,16 @@
 QString UV::getSaison()const{
     QString result;
     switch(_saison){
-    case 0:
+    case P:
         result = "P";
         break;
-    case 1:
+    case A:
         result = "A";
         break;
-    case 2:
+    case PA:
         result = "PA";
         break;
-    case 3:
+    case X:
         result = "X";
         break;
     }

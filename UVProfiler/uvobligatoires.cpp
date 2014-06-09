@@ -3,3 +3,8 @@
 UVObligatoires::UVObligatoires()
 {
 }
+
+bool UVObligatoires::validation() {
+
+}
+

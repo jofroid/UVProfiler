@@ -2,6 +2,7 @@
 #define BRANCHE_H
 
 #include <QString>
+#include <QVariant>
 #include "cursus.h"
 
 enum ColonneTSH { DemarchesEtPratiques, Connaissances     };
@@ -14,7 +15,7 @@ private:
     
 public:
     Branche(): Cursus( "", "", "") {}
-    Branche(const QString& nom, const QString& code, const QString& description, const EnsCredits creditsNecessaires=0 ): \
+    Branche(const QString& nom, const QString& code, const QString& description, const EnsCredits creditsNecessaires=EnsCredits() ): \
         Cursus(nom, code, description, creditsNecessaires){}
     Branche(const Branche& copie);
     ~Branche() {}
