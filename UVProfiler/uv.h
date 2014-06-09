@@ -26,10 +26,6 @@ public:
     void setNom(const QString& nom)             { _nom = nom;                    }
     void setCode(const QString& code)           { _code = code;                  }
     void setSaison(Saison saison)               { _saison = saison;              }
-    virtual void setLigneTSH(const LigneTSH ligneTSH)=0;
-    virtual void setColonneTSH(const ColonneTSH colonneTSH)=0;
-    virtual void setLigneTSH(const QString& ligneTSH)=0;
-    virtual void setColonneTSH(const QString& colonneTSH)=0;
 
     // Getters
     const QString& getNom()const            { return _nom;            }

@@ -23,8 +23,10 @@ SOURCES += \
     mineurbase.cpp \
     decorateurmineur.cpp \
     uvobligatoires.cpp \
-    selectionxparmisy.cpp \
-    etudiantmanager.cpp
+    etudiantmanager.cpp \
+    criteresvalidationfiliere.cpp \
+    selectionparmi.cpp \
+    semestre.cpp
 
 HEADERS += \
     uvmanager.h \
@@ -48,5 +50,7 @@ HEADERS += \
     mineurbase.h \
     decorateurmineur.h \
     uvobligatoires.h \
-    selectionxparmisy.h \
-    etudiantmanager.h
+    etudiantmanager.h \
+    criteresvalidationfiliere.h \
+    selectionparmi.h \
+    semestre.h

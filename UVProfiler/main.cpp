@@ -5,6 +5,7 @@
 #include "uvmanager.h"
 #include "cursusmanager.h"
 #include "uv.h"
+#include "semestre.h"
 #include "windows.h"
 
 #define q2c(string) string.toStdString()
@@ -60,6 +61,7 @@ int main(int argc,char **argv)
 void initFileSystem() {
     EnsCredits::initEnsCreditsSystem();
     Branche::initBrancheSystem();
+    Semestre::initSemestreSystem();
 }
 
 
@@ -93,7 +95,7 @@ void a() {
     std::cout<<"modif' faites\n";
 
     CursusManager& cManager = CursusManager::getInstance();
-    cManager.print();
+    cManager.printBranche();
 }
 
 

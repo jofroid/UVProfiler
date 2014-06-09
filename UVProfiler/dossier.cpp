@@ -1,6 +1,19 @@
 #include "dossier.h"
 
 Dossier::Dossier(QString username) : _login(username) {
+    load();
+}
+
+
+// ----------------------------------
+// -        LOAD DOSSIER
+// ----------------------------------
+
+void Dossier::load() {
+    loadFromFile();
+}
+
+void Dossier::loadFromDB() { // Non fonctionnel ...
     /*     int _semestrePB; // semestre Post-Bac
     int _semestreB;  // semestre Branche
     QString _login;
@@ -36,4 +49,8 @@ Dossier::Dossier(QString username) : _login(username) {
         _filiere   =CursusManager::getInstance.getCursus((result.value("filiere    ")).toString() );
         _mineur    =CursusManager::getInstance.getCursus((result.value("mineur     ")).toString() );*/
     }
+}
+
+void Dossier::loadFromFile() {
+
 }

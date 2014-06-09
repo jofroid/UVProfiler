@@ -115,7 +115,7 @@ void UVManager::saveToDB()const{
     db.close();
 }
 
-void UVManager::loadFromDB(){
+void UVManager::loadFromDB(){ /*
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName("./UVPROFILER.db");
     if(db.open())
@@ -214,7 +214,7 @@ void UVManager::loadFromDB(){
         }
     }
     db.commit();
-    db.close();
+    db.close(); //*/
 }
 
 void UVManager::afficherTable(const QString& table){

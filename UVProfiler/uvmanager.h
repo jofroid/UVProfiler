@@ -60,11 +60,6 @@ public:
         }
 
     //       Setters
-    // QMap<QString, UV*> _uvs;
-    // unsigned int _nbUV;
-    // unsigned int _nbMaxUV;
-    // QString _file;
-    // enum typeOuverture _ouverture;
 
     typeOuverture getOuverture()const   { return _ouverture;     }
     void setOuvertureFichier()          { _ouverture = fichier;  }
