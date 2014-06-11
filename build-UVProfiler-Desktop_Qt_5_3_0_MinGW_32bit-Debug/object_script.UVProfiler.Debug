@@ -21,6 +21,8 @@ INPUT(
 ./debug\mineurbase.o
 ./debug\decorateurmineur.o
 ./debug\uvobligatoires.o
-./debug\selectionxparmisy.o
 ./debug\etudiantmanager.o
+./debug\criteresvalidationfiliere.o
+./debug\selectionparmi.o
+./debug\semestre.o
 );

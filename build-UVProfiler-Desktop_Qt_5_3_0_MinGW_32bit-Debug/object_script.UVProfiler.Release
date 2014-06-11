@@ -21,6 +21,8 @@ INPUT(
 ./release\mineurbase.o
 ./release\decorateurmineur.o
 ./release\uvobligatoires.o
-./release\selectionxparmisy.o
 ./release\etudiantmanager.o
+./release\criteresvalidationfiliere.o
+./release\selectionparmi.o
+./release\semestre.o
 );
