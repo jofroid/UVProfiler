@@ -39,6 +39,7 @@ public:
     void printPostBac();
 
     void addBranche(const QString& nom, const QString& code, const QString& description, const EnsCredits creditsNecessaires = EnsCredits() );
+    void addPostBac(const QString& nom, const QString& code, const QString& description, const EnsCredits creditsNecessaires = EnsCredits() );
 
     Branche* getBranche(QString& branche) {
         if(_branche.contains(branche) )

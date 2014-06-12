@@ -6,7 +6,7 @@ QString UV::getSaison()const{
     case P:
         result = "P";
         break;
-    case A:
+    case Aut:
         result = "A";
         break;
     case PA:
@@ -23,7 +23,7 @@ Saison UV::getSaison(const QString& saison){
     if(saison == "P")
         return P;
     else if (saison == "A")
-        return A;
+        return Aut;
     else if (saison == "PA")
         return PA;
     else

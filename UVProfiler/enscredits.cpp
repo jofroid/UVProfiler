@@ -72,6 +72,12 @@ bool EnsCredits::operator==(const EnsCredits& right) const{
         && _creditsSP  == right.SP();
 }
 
+std::ostream& operator<<(std::ostream& out, const EnsCredits& Valeur) {
+    out << "Credits CS: " << Valeur._creditsCS
+       <<"\nCredits TM: " << Valeur._creditsTM
+       <<"\nCredits TSH:" << Valeur._creditsTSH
+       <<"\nCredits SP: " << Valeur._creditsSP;
+}
 
 QDataStream& operator<< (QDataStream& out, const EnsCredits& Valeur) // Utilisée pour stocker dans un fichier
 {

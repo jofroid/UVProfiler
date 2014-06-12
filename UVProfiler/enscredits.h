@@ -1,6 +1,7 @@
 #ifndef ENSCREDITS_H
 #define ENSCREDITS_H
 
+#include "UVProfiler.h"
 #include <QVariant>
 
 class EnsCredits
@@ -36,10 +37,13 @@ public:
     EnsCredits& operator/=(const unsigned int denominateur);
     void operator=(const EnsCredits& right);
     bool operator==(const EnsCredits& right) const;
+    friend std::ostream& operator<<(std::ostream&, const EnsCredits& );
 
     friend QDataStream& operator<< (QDataStream&, const EnsCredits&);
     friend QDataStream& operator>> (QDataStream&, EnsCredits&);
 };
+
+std::ostream& operator<<(std::ostream& out, const EnsCredits& Valeur);
 
 Q_DECLARE_METATYPE(EnsCredits)
 QDataStream& operator<< (QDataStream& out, const EnsCredits& Valeur);

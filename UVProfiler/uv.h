@@ -1,15 +1,14 @@
 #ifndef UV_H
 #define UV_H
 
+#include <QString>
+#include <QVector>
 #include "cursus.h"
 #include "enscredits.h"
 #include "branche.h"
-#include <QString>
-#include <QVector>
+#include "semestre.h" // Pour avoir l'enum Saison
 
 using namespace std;
-
-enum Saison { P, A, PA, X };
 
 class UV
 {

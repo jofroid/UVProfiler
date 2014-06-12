@@ -9,6 +9,7 @@
 #include "filiere.h"
 #include "inscription.h"
 #include "cursusmanager.h"
+#include "enscredits.h"
 
 class Dossier
 {
@@ -21,10 +22,14 @@ private:
     Filiere* _filiere;
     Filiere* _mineur;
     QMap<QString, Inscription*> _inscriptions;
+    EnsCredits _creditsTotauxPostBac;// Nombre de crédits donnés par toutes ses UVs
+    EnsCredits _creditsTotauxBranche;
 
     void load();
     void loadFromDB();
     void loadFromFile();
+    void updateCreditsPostBac();
+    void updateCreditsBranche();
 public:
     Dossier(QString username);
 
@@ -38,15 +43,19 @@ public:
                 // Dois-je mettre un test pour vérifier que c'est un mineur ?
 
     // Getters
-    unsigned int getSemestrePB() { return _semestrePB; }
-    unsigned int getSemestreB()  { return _semestreB; }
-    PostBac&     getPostBac()    { return *_postBac; }
-    Branche&     getBranche()    { return *_branche; }
-    Filiere&     getFiliere()    { return *_filiere; }
-    Filiere&     getMineur()     { return *_mineur; }
+    unsigned int getSemestrePB()  { return _semestrePB;      }
+    unsigned int getSemestreB()   { return _semestreB;       }
+    PostBac&     getPostBac()     { return *_postBac;        }
+    Branche&     getBranche()     { return *_branche;        }
+    Filiere&     getFiliere()     { return *_filiere;        }
+    Filiere&     getMineur()      { return *_mineur;         }
     Inscription& getInscription(const QString& semestre) { return *_inscriptions[semestre]; }
+    EnsCredits   getTotalCreditsPostBac() { return _creditsTotauxPostBac; }
+    EnsCredits   getTotalCreditsBranche() { return _creditsTotauxBranche; }
 
     // Other functions
+    void updateCredits(); // met à jour la valeur de _creditsTotauxPostBac et de _creditsTotauxBranche à partir
+                          //    des Inscriptions
 
 };
 

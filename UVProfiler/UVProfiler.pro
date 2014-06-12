@@ -26,7 +26,8 @@ SOURCES += \
     etudiantmanager.cpp \
     criteresvalidationfiliere.cpp \
     selectionparmi.cpp \
-    semestre.cpp
+    semestre.cpp \
+    UVProfiler.cpp
 
 HEADERS += \
     uvmanager.h \
@@ -53,4 +54,5 @@ HEADERS += \
     etudiantmanager.h \
     criteresvalidationfiliere.h \
     selectionparmi.h \
-    semestre.h
+    semestre.h \
+    UVProfiler.h

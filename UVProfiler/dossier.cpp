@@ -1,6 +1,6 @@
 #include "dossier.h"
 
-Dossier::Dossier(QString username) : _login(username) {
+Dossier::Dossier(QString username) : _login(username), _postBac(0), _branche(0), _filiere(0), _mineur(0) {
     load();
 }
 
@@ -14,15 +14,7 @@ void Dossier::load() {
 }
 
 void Dossier::loadFromDB() { // Non fonctionnel ...
-    /*     int _semestrePB; // semestre Post-Bac
-    int _semestreB;  // semestre Branche
-    QString _login;
-    PostBac* _postBac;
-    Branche* _branche;
-    Filiere* _filiere;
-    Filiere* _mineur;
-    QMap<QString, Inscription*> _inscriptions;
-    */
+
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName("./UVPROFILER.db");
     if(db.open())
@@ -54,3 +46,33 @@ void Dossier::loadFromDB() { // Non fonctionnel ...
 void Dossier::loadFromFile() {
 
 }
+
+
+// ----------------------------------
+// -        OTHER FUNCTIONS
+// ----------------------------------
+
+void Dossier::updateCredits() {
+    if(!_postBac) { // Donc si PostBac est défini
+        updateCreditsPostBac();
+    }
+    if(!_branche) { // Donc si Branche est définie
+        updateCreditsBranche();
+    }
+}
+
+void Dossier::updateCreditsPostBac() {
+    // Parcourir toutes les inscriptions du tableau donc le cursus a la même valeur que _postBac, et additionner les
+    //      credits dont la notes est supérieur à FX (en pratique, inférieur car c'est une enum).
+    // Ou alors, rajouter un champ _créditsObtenus dans la classe Inscription, et une fonction updateCredits que l'on
+    //      appelerai à chaque fois que l'on ajoute une note ou retire une UV.
+    // C'est toi qui voit, mais je pense qu'on aura un soucis avec le pronostic du semestreEtranger, à moins qu'on
+    //      rajoute un champ _creditsObtenus que l'on remplit à la fin du semestre à l'étranger avec le nombre de
+    //      crédits obtenus...
+}
+
+void Dossier::updateCreditsBranche() {
+
+}
+
+

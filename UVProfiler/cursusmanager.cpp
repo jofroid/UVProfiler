@@ -36,9 +36,12 @@ void CursusManager::printPostBac() {
 // ----------------------------------
 
 void CursusManager::addBranche(const QString& nom, const QString& code, const QString& description, const EnsCredits creditsNecessaires) {
-    _branche.insert(code, new Branche(nom, code, description, creditsNecessaires));
+    _branche.insert(code, new Branche(nom, code, description, creditsNecessaires) );
 }
 
+void CursusManager::addPostBac(const QString& nom, const QString& code, const QString& description, const EnsCredits creditsNecessaires ) {
+    _postBac.insert(code, new PostBac(nom, code, description, creditsNecessaires) );
+}
 
 
 // ----------------------------------

@@ -1,6 +1,7 @@
 #ifndef ETUDIANT_H
 #define ETUDIANT_H
 
+#include "UVProfiler.h"
 #include "dossier.h"
 #include <QString>
 #include <QMap>
