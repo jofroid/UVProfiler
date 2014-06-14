@@ -5,7 +5,10 @@
 #include "uvmanager.h"
 #include "cursusmanager.h"
 #include "uv.h"
+#include "cs.h"
 #include "semestre.h"
+#include "semestreutc.h"
+#include "dossier.h"
 #include "windows.h"
 
 #define q2c(string) string.toStdString()
@@ -48,8 +51,8 @@ int main(int argc,char **argv)
             //uvTest = manager.getUV("TN01");
             //std::cout<<uvTest.getNom().toStdString()<<std::endl;
 */
-            //a();
-            std::cout<<"Done\n";
+            a();
+            std::cout<<"Coucou!\nIt's done\n";
 
     }
     catch (UTProfilerException utpe) {
@@ -68,34 +71,18 @@ void initFileSystem() {
 
 
 void a() {
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-        db.setDatabaseName("./UVPROFILER.db");
-    QSqlQuery result;
-    if(db.open())
-          std::cout<<"UVPROFILER.db opened!"<<std::endl;
-    result.exec("DROP TABLE cursus;");
-    result.exec("DROP TABLE branche;");
-    result.exec("CREATE TABLE IF NOT EXISTS cursus (" \
-                    "code           CHAR(10) PRIMARY KEY NOT NULL," \
-                    "nom            TEXT                 NOT NULL," \
-                    "description    CHAR(5)              NOT NULL," \
-                    "SAISON         CHAR(2)              NOT NULL," \
-                    "CS             INT                          ," \
-                    "TM             INT                          ," \
-                    "TSH            INT                          ," \
-                    "SP             INT                          );");
-    result.exec("CREATE TABLE IF NOT EXISTS branche (" \
-                    "code                CHAR(10) PRIMARY KEY NOT NULL REFERENCES cursus(code)," \
-                    "creditPCBNecessaire INT                  NOT NULL);");
-    result.exec("INSERT INTO cursus(code, nom, description, saison, CS, TM, TSH, SP)\
-                VALUES('GI', 'Génie Info', 'les pros', 'P14', 0, 0, 0, 0);");
+    PostBac postbac("TC", "TC", "tronc commun", EnsCredits(1,1,1,2));
+    Dossier dossier("amirgalet");
+    dossier.setPostBac( &postbac);
+    SemestreUTC* sem = new SemestreUTC();
+    CS nf17("BD", "NF17", PA, EnsCredits(3,0,0,0) ); nf17.getCredit().afficheEnsCredits();
+    CS lo21("OO", "LO21", PA, EnsCredits(4,0,0,3) ); lo21.getCredit().afficheEnsCredits();
+    sem->addUV( &nf17);
+    sem->addUV( &lo21);
+    dossier.addInscription( sem);
+    dossier.updateCredits();
+    dossier.getTotalCreditsPostBac().afficheEnsCredits();
 
-            db.commit();
-            db.close();
-    std::cout<<"modif' faites\n";
-
-    CursusManager& cManager = CursusManager::getInstance();
-    cManager.printBranche();
 }
 
 

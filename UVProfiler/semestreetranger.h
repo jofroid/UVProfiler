@@ -13,6 +13,7 @@ class SemestreEtranger: public Inscription
 private:
     EnsCredits _pronosticCreditsMin;
     EnsCredits _pronosticCreditsMax;
+    EnsCredits _creditsObtenus;
 
 public:
     SemestreEtranger(const Semestre& semestre, Cursus* cursus, const EnsCredits& pronosticCreditsMin, const EnsCredits& pronosticCreditsMax):\
@@ -21,10 +22,13 @@ public:
 //SETTERS
     void setCreditsMin(const EnsCredits pronosticCreditsMin) { _pronosticCreditsMin = pronosticCreditsMin; }
     void setCreditsMax(const EnsCredits pronosticCreditsMax) { _pronosticCreditsMax = pronosticCreditsMax; }
+    void setCreditsObtenus(const EnsCredits credits)         { _creditsObtenus      = credits;             }
+
 
 //GETTERS
     EnsCredits getCreditsMin()  { return _pronosticCreditsMin;  }
     EnsCredits getCreditsMax()  { return _pronosticCreditsMax;  }
+    EnsCredits getCredits()     { return _creditsObtenus;       }
 
 };
 

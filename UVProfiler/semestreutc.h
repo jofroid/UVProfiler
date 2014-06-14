@@ -17,13 +17,19 @@ public:
     SemestreUTC();
 
     QMap<QString, UV*> getUV()  { return _choixUVs;                                                          }
-    void addUV(UV* uv)          { _choixUVs.insert(uv->getNom(), uv); _notes.insert(uv->getNom(), enCours);  }
-    void removeUV(QString nom)  { _choixUVs.remove(nom);              _notes.remove(nom);                    }
-    void removeUV(UV* uv)       { _choixUVs.remove(uv->getNom() );    _notes.remove(uv->getNom() );          }
+    void removeUV(QString code)  { _choixUVs.remove(code);              _notes.remove(code);                    }
+    void removeUV(UV* uv)       { _choixUVs.remove(uv->getCode() );    _notes.remove(uv->getCode() );          }
+    void addUV(UV* uv)          { _choixUVs.insert(uv->getCode(), uv); _notes.insert(uv->getCode(), enCours);  }
+    void addUV(const QString& code) {
+        UV& uv = UVManager::getInstance().getUV( code);
+        _choixUVs.insert(uv.getCode(), &uv);
+        _notes.insert(uv.getCode(), enCours);
+    }
 
-    void setNote(const QString& nom, const Notes& note);
+    void setNote(const QString& code, const Notes& note);
     void setNote(UV* uv,             const Notes& note);
 
+    EnsCredits getCredits();
 };
 
 #endif // SEMESTREUTC_H

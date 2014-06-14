@@ -18,6 +18,9 @@ public:
     Semestre(Saison saison = Aut, unsigned int annee = 0) : _saison(saison), _annee(annee) {}
     Semestre(const Semestre& copie) : _saison(copie._saison), _annee(copie._annee) {}
 
+    bool operator<(const Semestre& semestre) const;
+    bool operator>(const Semestre& semestre) const;
+
     static void initSemestreSystem();
     friend QDataStream& operator<< (QDataStream&, const Semestre&);
     friend QDataStream& operator>> (QDataStream&, Semestre&);

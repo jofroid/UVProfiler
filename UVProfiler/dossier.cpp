@@ -61,6 +61,11 @@ void Dossier::updateCredits() {
     }
 }
 
+void Dossier::setCreditsPostBac(const EnsCredits& credits) { // Dans le cas où on a pas fait de TC
+    if(!_postBac)
+        _creditsTotauxPostBac=credits;
+}
+
 void Dossier::updateCreditsPostBac() {
     // Parcourir toutes les inscriptions du tableau donc le cursus a la même valeur que _postBac, et additionner les
     //      credits dont la notes est supérieur à FX (en pratique, inférieur car c'est une enum).
@@ -69,6 +74,16 @@ void Dossier::updateCreditsPostBac() {
     // C'est toi qui voit, mais je pense qu'on aura un soucis avec le pronostic du semestreEtranger, à moins qu'on
     //      rajoute un champ _creditsObtenus que l'on remplit à la fin du semestre à l'étranger avec le nombre de
     //      crédits obtenus...
+
+    if(_postBac) { // Donc si on a fait la prépa intégrée de l'UT
+        QMap<Semestre, Inscription*>::const_iterator it;
+        EnsCredits total;
+        for(it=_inscriptions.constBegin(); it!=_inscriptions.constEnd(); ++it) {
+            if( it.value()->getCursus() == _postBac) { // Donc si l'inscription concerne notre postBac
+                total+=it.value()->getCredits();
+            }
+        }
+    }
 }
 
 void Dossier::updateCreditsBranche() {

@@ -1,5 +1,16 @@
 #include "semestre.h"
 
+bool Semestre::operator<(const Semestre& semestre) const{
+    if(_annee == semestre._annee)
+        return _saison < semestre._saison;
+    return _annee < semestre._annee;
+}
+
+bool Semestre::operator>(const Semestre& semestre) const {
+    if(_annee == semestre._annee)
+        return _saison > semestre._saison;
+    return _annee > semestre._annee;
+}
 
 
 void Semestre::initSemestreSystem() {

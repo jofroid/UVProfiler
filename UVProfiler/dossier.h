@@ -10,6 +10,7 @@
 #include "inscription.h"
 #include "cursusmanager.h"
 #include "enscredits.h"
+#include "semestre.h"
 
 class Dossier
 {
@@ -21,7 +22,7 @@ private:
     Branche* _branche;
     Filiere* _filiere;
     Filiere* _mineur;
-    QMap<QString, Inscription*> _inscriptions;
+    QMap<Semestre, Inscription*> _inscriptions;
     EnsCredits _creditsTotauxPostBac;// Nombre de crédits donnés par toutes ses UVs
     EnsCredits _creditsTotauxBranche;
 
@@ -39,8 +40,10 @@ public:
     void setPostBac     (PostBac* postBac)  { _postBac      = postBac;  }
     void setBranche     (Branche* branche)  { _branche      = branche;  }
     void setFiliere     (Filiere* filiere)  { _filiere      = filiere;  }
-    void setMineur      (Filiere* mineur)   { _mineur       = mineur;   }
-                // Dois-je mettre un test pour vérifier que c'est un mineur ?
+    void setMineur      (Filiere* mineur)   { _mineur       = mineur;   } // Dois-je mettre un test pour vérifier que c'est un mineur ?
+    void setCreditsPostBac(const EnsCredits& credits);
+
+    void addInscription(Inscription* inscription) { _inscriptions.insert(inscription->getSemestre(), inscription); }
 
     // Getters
     unsigned int getSemestrePB()  { return _semestrePB;      }
@@ -49,7 +52,7 @@ public:
     Branche&     getBranche()     { return *_branche;        }
     Filiere&     getFiliere()     { return *_filiere;        }
     Filiere&     getMineur()      { return *_mineur;         }
-    Inscription& getInscription(const QString& semestre) { return *_inscriptions[semestre]; }
+    Inscription& getInscription(const Semestre& semestre) { return *_inscriptions[semestre]; }
     EnsCredits   getTotalCreditsPostBac() { return _creditsTotauxPostBac; }
     EnsCredits   getTotalCreditsBranche() { return _creditsTotauxBranche; }
 
