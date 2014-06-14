@@ -1,9 +1,8 @@
 #include "tsh.h"
 
-TSH::TSH(const QString n, const QString c, const Saison s, const unsigned int credits, const LigneTSH ligneTSH, const ColonneTSH colonneTSH) : UV::UV(n, c, s), _ligneTSH(ligneTSH), _colonneTSH(colonneTSH)
-{
-    getCredit().setTSH(credits);
-}
+TSH::TSH(const QString nom, const QString code, const Saison saison, const unsigned int credits, const LigneTSH ligneTSH, const ColonneTSH colonneTSH) :\
+    UV::UV(nom, code, saison), _ligneTSH(ligneTSH), _colonneTSH(colonneTSH)
+    { getCredit().setTSH(credits); }
 
 const QString TSH::getLigneTSH(){
     switch(_ligneTSH){
@@ -38,4 +37,3 @@ void TSH::setColonneTSH(const QString& colonneTSH){
     else
         UTProfilerException (QString("erreur TSH : la colonne ")+colonneTSH+QString(" n'existe pas"));
 }
-

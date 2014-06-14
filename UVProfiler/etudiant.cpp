@@ -2,7 +2,7 @@
 
 Etudiant* Etudiant::_instance(NULL);
 
-Etudiant::Etudiant(QString username, QString nom, QString prenom) : _login(username), _nom(nom), _prenom(prenom) {
+Etudiant::Etudiant(QString login, QString nom, QString prenom) : EtudiantData(login, nom, prenom) {
 
 }
 
@@ -16,4 +16,9 @@ Etudiant& Etudiant::createAccount(QString username, QString nom, QString prenom)
     _instance = new Etudiant(username, nom, prenom);
     return *_instance;
 }
+
+static Etudiant& login(QString username) {
+
+}
+
 

@@ -75,13 +75,20 @@ void a() {
     Dossier dossier("amirgalet");
     dossier.setPostBac( &postbac);
     SemestreUTC* sem = new SemestreUTC(Semestre(Aut, 14), &postbac);
-    CS nf17("BD", "NF17", PA, EnsCredits(3,0,0,0) );
-    CS lo21("OO", "LO21", PA, EnsCredits(4,0,0,3) );
+    CS nf17("BD", "NF17", PA, 3 );
+    CS lo21("OO", "LO21", PA, 4 );
     sem->addUV( &nf17);
     sem->addUV( &lo21);
+    sem->setNote("NF17", A);
+    sem->setNote("LO21", E);
     dossier.addInscription( sem);
     dossier.updateCredits();
+    std::cout<<"\n\nTotal:\n";
     dossier.getTotalCreditsPostBac().afficheEnsCredits();
+
+    Branche branche("GI", "GI", "génie info", EnsCredits(2,2,2,3));
+    dossier.setBranche(&branche);
+    SemestreUTC* sem2 = new SemestreUTC(Semestre(P, 14), &branche);
 
 }
 

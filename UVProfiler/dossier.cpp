@@ -84,12 +84,25 @@ void Dossier::updateCreditsPostBac() {
                 total+=it.value()->getCredits();
             }
         }
+        std::cout<<"\ntotal update:\n";
         total.afficheEnsCredits();
+        _creditsTotauxPostBac=total;
     }
 }
 
 void Dossier::updateCreditsBranche() {
-
+    if(_branche) { // Donc si on est en branche
+        QMap<Semestre, Inscription*>::const_iterator it;
+        EnsCredits total;
+        for(it=_inscriptions.constBegin(); it!=_inscriptions.constEnd(); ++it) {
+            if( it.value()->getCursus() == _branche) { // Donc si l'inscription concerne notre branche
+                total+=it.value()->getCredits();
+            }
+        }
+        std::cout<<"\ntotal update:\n";
+        total.afficheEnsCredits();
+        _creditsTotauxBranche=total;
+    }
 }
 
 

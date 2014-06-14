@@ -33,9 +33,9 @@ public:
     static Saison getSaison(const QString& saison);
     const EnsCredits& getCredit()const      { return _creditsDelivres;}
     EnsCredits& getCredit()                 { return _creditsDelivres;}
-    virtual const QString getCategorie()=0;
+    virtual const QString getCategorie() =0;
     virtual const QString getColonneTSH()=0;
-    virtual const QString getLigneTSH()=0;
+    virtual const QString getLigneTSH()  =0;
 
     //Autres méthodes
 

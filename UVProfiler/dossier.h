@@ -17,7 +17,7 @@ class Dossier
 private:
     unsigned int _semestrePB; // semestre Post-Bac
     unsigned int _semestreB;  // semestre Branche
-    QString _login;
+    QString _login;           // identifiant de l'étudiant dont le dossier appartient
     PostBac* _postBac;
     Branche* _branche;
     Filiere* _filiere;

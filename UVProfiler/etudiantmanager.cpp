@@ -1,5 +1,3 @@
 #include "etudiantmanager.h"
 
-etudiantManager::etudiantManager()
-{
-}
+etudiantManager* _instance=0;
