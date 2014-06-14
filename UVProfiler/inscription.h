@@ -13,10 +13,12 @@
 class Inscription
 {
 protected:
+    enum typeInscription { tsemestreUTC, tsemestreEtranger};
+    typeInscription _type;
     Semestre _semestre;
     Cursus* _cursusEnCours;
 public:
-    Inscription( const Semestre& semestre = Semestre(Aut,0), Cursus* cursus = NULLPTR): _semestre(semestre), _cursusEnCours(cursus)
+    Inscription( typeInscription type, const Semestre& semestre = Semestre(Aut,0), Cursus* cursus = NULLPTR): _semestre(semestre), _cursusEnCours(cursus), _type(type)
         {}
     virtual ~Inscription()=0;
 

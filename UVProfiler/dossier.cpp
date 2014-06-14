@@ -53,10 +53,11 @@ void Dossier::loadFromFile() {
 // ----------------------------------
 
 void Dossier::updateCredits() {
-    if(!_postBac) { // Donc si PostBac est défini
+    if(_postBac) { // Donc si PostBac est défini
+        std::cout<<"on va maj les cred'\n";
         updateCreditsPostBac();
     }
-    if(!_branche) { // Donc si Branche est définie
+    if(_branche) { // Donc si Branche est définie
         updateCreditsBranche();
     }
 }
@@ -83,6 +84,7 @@ void Dossier::updateCreditsPostBac() {
                 total+=it.value()->getCredits();
             }
         }
+        total.afficheEnsCredits();
     }
 }
 

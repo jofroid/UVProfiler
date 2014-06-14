@@ -8,13 +8,14 @@
 #include "uv.h"
 
 
-class SemestreUTC
+class SemestreUTC : public Inscription
 {
 protected:
     QMap<QString, UV*> _choixUVs;
     QMap<QString, Notes> _notes;
 public:
-    SemestreUTC();
+    SemestreUTC(const Semestre& semestre = Semestre(Aut,0), Cursus* cursus = NULLPTR) : Inscription(tsemestreUTC, semestre, cursus)
+        {}
 
     QMap<QString, UV*> getUV()  { return _choixUVs;                                                          }
     void removeUV(QString code)  { _choixUVs.remove(code);              _notes.remove(code);                    }

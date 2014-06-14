@@ -17,7 +17,7 @@ private:
 
 public:
     SemestreEtranger(const Semestre& semestre, Cursus* cursus, const EnsCredits& pronosticCreditsMin, const EnsCredits& pronosticCreditsMax):\
-        Inscription(semestre, cursus), _pronosticCreditsMin(pronosticCreditsMin), _pronosticCreditsMax(pronosticCreditsMax){}
+        Inscription(tsemestreEtranger, semestre, cursus), _pronosticCreditsMin(pronosticCreditsMin), _pronosticCreditsMax(pronosticCreditsMax){}
 
 //SETTERS
     void setCreditsMin(const EnsCredits pronosticCreditsMin) { _pronosticCreditsMin = pronosticCreditsMin; }

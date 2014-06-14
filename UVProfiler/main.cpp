@@ -74,9 +74,9 @@ void a() {
     PostBac postbac("TC", "TC", "tronc commun", EnsCredits(1,1,1,2));
     Dossier dossier("amirgalet");
     dossier.setPostBac( &postbac);
-    SemestreUTC* sem = new SemestreUTC();
-    CS nf17("BD", "NF17", PA, EnsCredits(3,0,0,0) ); nf17.getCredit().afficheEnsCredits();
-    CS lo21("OO", "LO21", PA, EnsCredits(4,0,0,3) ); lo21.getCredit().afficheEnsCredits();
+    SemestreUTC* sem = new SemestreUTC(Semestre(Aut, 14), &postbac);
+    CS nf17("BD", "NF17", PA, EnsCredits(3,0,0,0) );
+    CS lo21("OO", "LO21", PA, EnsCredits(4,0,0,3) );
     sem->addUV( &nf17);
     sem->addUV( &lo21);
     dossier.addInscription( sem);

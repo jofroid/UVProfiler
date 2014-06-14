@@ -1,6 +1,6 @@
 #include "semestreutc.h"
 
-SemestreUTC::SemestreUTC() {}
+
 
 void SemestreUTC::setNote(const QString& code, const Notes& note) {
     if( _choixUVs.contains(code) ) { // Donc si l'UV est dans la liste des UV choisies
