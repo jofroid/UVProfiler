@@ -1,6 +1,9 @@
 #ifndef DOSSIER_H
 #define DOSSIER_H
 
+/**
+  * @file dossier.h
+  */
 #include <QtSql>
 #include <QMap>
 #include <QString>
@@ -12,26 +15,77 @@
 #include "enscredits.h"
 #include "semestre.h"
 
+/**
+ * @brief The Dossier class Classe representant le dossier d'un etudiant
+ */
 class Dossier
 {
 private:
-    unsigned int _semestrePB; // semestre Post-Bac
-    unsigned int _semestreB;  // semestre Branche
-    QString _login;           // identifiant de l'étudiant dont le dossier appartient
+    /**
+     * @brief _semestrePB Numero du semestre PostBac courant ou apres avoir ete termine
+     */
+    unsigned int _semestrePB;
+    /**
+     * @brief _semestreB Numero du semestre PostBac courant
+     */
+    unsigned int _semestreB;
+    /**
+     * @brief _login Login de l'etudiant sont le dossier appartient
+     */
+    QString _login;
+    /**
+     * @brief _postBac Pointe sur le cursus postbac en cours
+     */
     PostBac* _postBac;
+    /**
+     * @brief _branche Pointe sur la branche en cours
+     */
     Branche* _branche;
+    /**
+     * @brief _filiere Pointe sur la filiere en cours
+     */
     Filiere* _filiere;
+    /**
+     * @brief _mineur Pointe sur le mineur en cours
+     */
     Filiere* _mineur;
+    /**
+     * @brief _inscriptions Map des inscriptions du dossier
+     */
     QMap<Semestre, Inscription*> _inscriptions;
-    EnsCredits _creditsTotauxPostBac;// Nombre de crédits donnés par toutes ses UVs
+    /**
+     * @brief _creditsTotauxPostBac Total des credits obtenus en cursus postbac
+     */
+    EnsCredits _creditsTotauxPostBac;
+    /**
+     * @brief _creditsTotauxBranche Total des credits obtenus en branche
+     */
     EnsCredits _creditsTotauxBranche;
-
+    /**
+     * @brief load Charge un dossier soit depuis un fichier, soit depuis la BDD
+     */
     void load();
+    /**
+     * @brief loadFromDB Charge un dossier depuis la DB
+     */
     void loadFromDB();
+    /**
+     * @brief loadFromFile Charge un dossier depuis un fichier
+     */
     void loadFromFile();
+    /**
+     * @brief updateCreditsPostBac Met a jour le nombre de credits postbac obtenu
+     */
     void updateCreditsPostBac();
+    /**
+     * @brief updateCreditsBranche Met a jour le nombre de credits branche obtenu
+     */
     void updateCreditsBranche();
 public:
+    /**
+     * @brief Dossier Constructeur de base
+     * @param username login de l'etudiant
+     */
     Dossier(QString username);
 
     // Setters
@@ -42,8 +96,6 @@ public:
     void setFiliere     (Filiere* filiere)  { _filiere      = filiere;  }
     void setMineur      (Filiere* mineur)   { _mineur       = mineur;   } // Dois-je mettre un test pour vérifier que c'est un mineur ?
     void setCreditsPostBac(const EnsCredits& credits);
-
-    void addInscription(Inscription* inscription) { _inscriptions.insert(inscription->getSemestre(), inscription); }
 
     // Getters
     unsigned int getSemestrePB()  { return _semestrePB;      }
@@ -57,6 +109,14 @@ public:
     EnsCredits   getTotalCreditsBranche() { return _creditsTotauxBranche; }
 
     // Other functions
+    /**
+     * @brief addInscription Ajoute une inscription au dossier
+     * @param inscription inscription a ajouter
+     */
+    void addInscription(Inscription* inscription) { _inscriptions.insert(inscription->getSemestre(), inscription); }
+    /**
+     * @brief updateCredits Met a jour les credits obtenus
+     */
     void updateCredits(); // met à jour la valeur de _creditsTotauxPostBac et de _creditsTotauxBranche à partir
                           //    des Inscriptions
 

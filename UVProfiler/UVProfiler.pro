@@ -50,7 +50,6 @@ HEADERS += \
     filiere.h \
     mineur.h \
     mineurbase.h \
-    decorateurmineur.h \
     uvobligatoires.h \
     etudiantmanager.h \
     criteresvalidationfiliere.h \
