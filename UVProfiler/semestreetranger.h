@@ -1,18 +1,32 @@
 #ifndef SEMESTREETRANGER_H
 #define SEMESTREETRANGER_H
 
+/**
+  * @file semestreetranger.h
+  */
 #include "UVProfiler.h"
 #include "enscredits.h"
 #include "inscription.h"
 #include "semestre.h"
 #include "cursus.h"
 
-
+/**
+ * @brief The SemestreEtranger class Classe representant un semestre a l'etranger (hors UTC)
+ */
 class SemestreEtranger: public Inscription
 {
 private:
+    /**
+     * @brief _pronosticCreditsMin Marge inferieur estimee des credits obtenus
+     */
     EnsCredits _pronosticCreditsMin;
+    /**
+     * @brief _pronosticCreditsMax Marge superieur estimee des credits obtenus
+     */
     EnsCredits _pronosticCreditsMax;
+    /**
+     * @brief _creditsObtenus Credits obtenus
+     */
     EnsCredits _creditsObtenus;
 
 public:
