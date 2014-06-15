@@ -5,16 +5,25 @@
 #include <QFile>
 #include <QSettings>
 #include <QMap>
-#include "uvmanager.h"
-#include "cursusmanager.h"
-#include "uv.h"
+#include "branche.h"
+#include "criteresvalidationfiliere.h"
 #include "cs.h"
-#include "semestre.h"
-#include "semestreutc.h"
+#include "cursus.h"
+#include "cursusmanager.h"
+#include "dossier.h"
+#include "enscredits.h"
 #include "etudiant.h"
 #include "etudiantdata.h"
-#include "dossier.h"
-#include "windows.h"
+#include "etudiantmanager.h"
+#include "filiere.h"
+#include "inscription.h"
+#include "mineur.h"
+#include "uv.h"
+#include "uvmanager.h"
+#include "semestre.h"
+#include "semestreutc.h"
+#include "semestreetranger.h"
+#include "windows.h" /** ??? */
 
 #define q2c(string) string.toStdString()
 
@@ -58,7 +67,7 @@ int main(int argc,char **argv)
             //uvTest = manager.getUV("TN01");
             //std::cout<<uvTest.getNom().toStdString()<<std::endl;
 */
-            testEtudiant();
+            testValidation();
             std::cout<<"\nDone\n";
 
     }
@@ -71,8 +80,11 @@ int main(int argc,char **argv)
 void initFileSystem() {
     EnsCredits::initEnsCreditsSystem();
     Branche::initBrancheSystem();
+    Filiere::initFiliereFileSystem();
     Semestre::initSemestreSystem();
     EtudiantData::initEtudiantDataFileSystem();
+    SemestreEtranger::initSemestreEtrangerFileSystem();
+
 }
 
 
@@ -127,6 +139,23 @@ void testEtudiant() {
 }
 
 void testValidation() {
-    Etudiant& compte = Etudiant::login("ami");
+    Semestre a(Aut, 14), b(P, 14), c(Aut, 15);
+
+    QSettings fichier("Semestre.ini", QSettings::IniFormat);
+    fichier.beginGroup("semestre");
+    fichier.setValue("a", QVariant::fromValue(a ));
+    fichier.setValue("b", QVariant::fromValue(b ));
+    fichier.setValue("c", QVariant::fromValue(c ));
+    fichier.endGroup();
+    fichier.sync();
+
+    int i(0);
+    fichier.beginGroup("semestre");
+    const QStringList childKeys = fichier.childKeys();
+    foreach (const QString& childKey, childKeys) {
+        fichier.value(childKey, QVariant::fromValue(Semestre() )).value<Semestre>().afficher();
+        std::cout<<std::endl;
+    }
+    fichier.endGroup();
 
 }

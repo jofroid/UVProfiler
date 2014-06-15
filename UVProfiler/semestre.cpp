@@ -19,13 +19,15 @@ void Semestre::initSemestreSystem() {
 }
 
 QDataStream& operator<< (QDataStream& out, const Semestre& Valeur) {
-    out << Valeur._saison
+    out << (int)Valeur._saison
         << Valeur._annee;
     return out;
 }
 
 QDataStream& operator>> (QDataStream& in, Semestre& Valeur){
-    //in >> Valeur._saison; // <- en cours d'implémentation, mais plante encore
+    int a(0);
+    in >> a; // <- en cours d'implémentation, mais plante encore
     in >> Valeur._annee;
+    Valeur._saison=(Saison)a;
     return in;
 }

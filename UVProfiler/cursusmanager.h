@@ -14,6 +14,7 @@
 #include <QString>
 #include <QtSql>
 
+class Filiere;
 /**
  * @brief The CursusManager class Classe representant le manager de cursus
  */
@@ -40,6 +41,8 @@ private:
      * @brief CursusManager Constructeur qui charge l'ensemble des Cursus dans le manager
      */
     CursusManager();
+
+    void loadExample();
     /**
      * @brief loadBrancheFromFile Charge les branches dans le manager par un fichier
      */
@@ -138,6 +141,14 @@ public:
     PostBac* getPostBac(QString& postBac) {
         if(_postBac.contains(postBac) )
             return _postBac[postBac]; }
+    Cursus* getCursus(QString& code) {
+        if(getBranche(code))
+            return getBranche(code);
+        if(getFiliere(code))
+            return getFiliere(code);
+        if(getPostBac(code))
+            return getPostBac(code);
+    }
 };
 
 #endif // CURSUSMANAGER_H

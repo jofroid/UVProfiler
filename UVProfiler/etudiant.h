@@ -28,9 +28,7 @@ private:
     static Etudiant* _instance;
 
     Etudiant(const EtudiantData& data);
-    void loadDossier();
-    void loadDossierFromFile();
-    void loadDossierFromDB();
+
 public:
     ~Etudiant();
     /**

@@ -78,6 +78,10 @@ private:
      */
     void loadFromFile();
     /**
+     * @brief loadFromExample Charge des valeurs prédéfinies
+     */
+    void loadFromExample();
+    /**
      * @brief updateCreditsPostBac Met a jour le nombre de credits postbac obtenu
      */
     void updateCreditsPostBac();

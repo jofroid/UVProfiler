@@ -6,8 +6,10 @@
   */
 #include <QString>
 #include <QMap>
+#include <QVariant>
 #include "UVProfiler.h"
 #include "uvmanager.h"
+#include "cursusmanager.h"
 #include "semestre.h"
 #include "cursus.h"
 #include "uv.h"
@@ -36,6 +38,7 @@ protected:
      */
     Cursus* _cursusEnCours;
 public:
+    Inscription() : _type(tsemestreUTC), _semestre(Semestre()), _cursusEnCours(NULLPTR) {}
     /**
      * @brief Inscription Constructeur de base
      * @param type Type de l'inscription
@@ -55,6 +58,7 @@ public:
     virtual EnsCredits getCredits()=0;
     typeInscription getType() { return _type; }
     virtual QMap<QString, Notes> getNotes() {}
+
 };
 
 #endif // INSCRIPTION_H

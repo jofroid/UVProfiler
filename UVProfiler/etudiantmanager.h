@@ -30,6 +30,7 @@ private:
     EtudiantManager();
     ~EtudiantManager();
 
+    void loadExample();
     void loadFromFile();
     void saveToFile();
 public:

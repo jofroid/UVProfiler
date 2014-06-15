@@ -16,12 +16,14 @@ protected:
     /**
      * @brief branche Branche associee a la filiere
      */
-    Branche* branche;
+    Branche* _branche;
 public:
     /**
      * @brief Filiere Constructeur de base
      */
-    Filiere();
+    Filiere() : Cursus(), _branche(NULL) {}
+    Filiere(const Filiere& copie) : Cursus(copie._nom, copie._code, copie._description, copie._creditsNecessaires),
+        _branche(copie._branche) {}
     /**
      * @brief Filiere Constructeur initialisant tous les champs de l'objet filiere
      * @param nom Nom de la filiere
@@ -31,6 +33,15 @@ public:
      */
     Filiere(const QString& nom, const QString& code, const QString& description, const EnsCredits creditsNecessaires=0):\
         Cursus::Cursus(nom, code, description, creditsNecessaires) {}
+
+    static void initFiliereFileSystem();
+    friend QDataStream& operator<< (QDataStream&, const Filiere&);
+    friend QDataStream& operator>> (QDataStream&, Filiere&);
+
 };
+
+Q_DECLARE_METATYPE(Filiere)
+QDataStream& operator<< (QDataStream& out, const Filiere& Valeur);
+QDataStream& operator>> (QDataStream& in, Filiere& Valeur);
 
 #endif // FILIERE_H

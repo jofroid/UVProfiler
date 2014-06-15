@@ -30,6 +30,10 @@ private:
     EnsCredits _creditsObtenus;
 
 public:
+    SemestreEtranger() : Inscription(tsemestreEtranger), _pronosticCreditsMax(0), _pronosticCreditsMin(0) {}
+    SemestreEtranger(const SemestreEtranger& copie) :\
+        Inscription(tsemestreEtranger, copie._semestre, copie._cursusEnCours), _pronosticCreditsMax(copie._pronosticCreditsMax),
+        _pronosticCreditsMin(copie._pronosticCreditsMin), _creditsObtenus(copie._creditsObtenus) {}
     /**
      * @brief SemestreEtranger Constructeur de base
      * @param semestre Semestre associe
@@ -51,7 +55,15 @@ public:
     EnsCredits getCreditsMax()  { return _pronosticCreditsMax;  }
     EnsCredits getCredits()     { return _creditsObtenus;       }
 
+    static void initSemestreEtrangerFileSystem();
+    friend QDataStream& operator<< (QDataStream&, const SemestreEtranger&);
+    friend QDataStream& operator>> (QDataStream&, SemestreEtranger&);
+
 };
+
+Q_DECLARE_METATYPE(SemestreEtranger)
+QDataStream& operator<< (QDataStream& out, const SemestreEtranger& Valeur);
+QDataStream& operator>> (QDataStream& in, SemestreEtranger& Valeur);
 
 
 #endif // SEMESTREETRANGER_H

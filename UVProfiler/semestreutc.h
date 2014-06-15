@@ -25,6 +25,7 @@ protected:
      */
     QMap<QString, Notes> _notes;
 public:
+    SemestreUTC(const SemestreUTC& copie) : Inscription(tsemestreUTC, copie._semestre, copie._cursusEnCours) {}
     /**
      * @brief SemestreUTC Constructeur de base
      * @param semestre Semestre associe
@@ -68,6 +69,14 @@ public:
     void setNote(UV* uv,              const Notes& note);
 
     EnsCredits getCredits();
+
+    static void initSemestreUTCFileSystem();
+    friend QDataStream& operator<< (QDataStream&, const SemestreUTC&);
+    friend QDataStream& operator>> (QDataStream&, SemestreUTC&);
 };
+
+Q_DECLARE_METATYPE(SemestreUTC)
+QDataStream& operator<< (QDataStream& out, const SemestreUTC& Valeur);
+QDataStream& operator>> (QDataStream& in, SemestreUTC& Valeur);
 
 #endif // SEMESTREUTC_H

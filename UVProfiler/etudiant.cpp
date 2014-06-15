@@ -16,6 +16,7 @@ Etudiant& Etudiant::createAccount(QString login, QString nom, QString prenom) {
     EtudiantData data(login, nom, prenom);
     _instance = new Etudiant( data);
     EtudiantManager::getInstance().addEtudiant( data);
+    _dossier = new Dossier(_instance->getLogin());
     return *_instance;
 }
 
@@ -26,6 +27,7 @@ Etudiant& Etudiant::login(QString login) {
     if(data.getLogin()== "" )
         throw UTProfilerException(QString("erreur dans Etudiant, le login ")+login+QString(" n'existe pas"));
     _instance = new Etudiant( data);
+    _dossier = new Dossier(_instance->getLogin());
     return *_instance;
 }
 
@@ -36,14 +38,6 @@ void Etudiant::logout() {
 
 Etudiant& Etudiant::getInstance() { if(_instance) return *_instance; }
 
-void Etudiant::loadDossier() {
-    loadDossierFromFile();
-}
 
-void Etudiant::loadDossierFromFile() {
 
-}
 
-void Etudiant::loadDossierFromDB() {
-
-}

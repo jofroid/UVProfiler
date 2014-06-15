@@ -5,7 +5,7 @@
   * @file semestre.h
   */
 // Permet de stocker P14 par exemple
-
+#include <iostream>
 
 #include <QVariant>
 #include <QString>
@@ -54,6 +54,9 @@ public:
     static void initSemestreSystem();
     friend QDataStream& operator<< (QDataStream&, const Semestre&);
     friend QDataStream& operator>> (QDataStream&, Semestre&);
+
+    void afficher() { QString str;
+                      str<<_saison; std::cout<<str.toStdString()<<" "<<_annee; }
 };
 
 Q_DECLARE_METATYPE(Semestre)

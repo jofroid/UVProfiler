@@ -28,7 +28,8 @@ SOURCES += \
     selectionparmi.cpp \
     semestre.cpp \
     UVProfiler.cpp \
-    etudiantdata.cpp
+    etudiantdata.cpp \
+    dossierdata.cpp
 
 HEADERS += \
     uvmanager.h \
@@ -57,4 +58,5 @@ HEADERS += \
     semestre.h \
     UVProfiler.h \
     etudiantdata.h \
-    etudiantdata.h
+    etudiantdata.h \
+    dossierdata.h

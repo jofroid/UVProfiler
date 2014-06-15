@@ -53,28 +53,21 @@ void CursusManager::addPostBac(const QString& nom, const QString& code, const QS
 // ----------------------------------
 
 void CursusManager::load() {
-    /*QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("./UVPROFILER.db");
-    if(db.open())
-      std::cout<<"UVPROFILER.db opened!"<<std::endl;
+    loadExample();
+    //loadBrancheFromFile();
+    //loadFiliereFromFile();
+    //loadPostBacFromFile();
+}
 
-    QSqlQuery result;
-    //result.exec("DROP TABLE cursus;");
-    result.exec("CREATE TABLE IF NOT EXISTS cursus (" \
-                    "code           CHAR(10) PRIMARY KEY NOT NULL," \
-                    "nom            TEXT                 NOT NULL," \
-                    "description    CHAR(5)              NOT NULL," \
-                    "SAISON         CHAR(2)              NOT NULL," \
-                    "CS             INT                          ," \
-                    "TM             INT                          ," \
-                    "TSH            INT                          ," \
-                    "SP             INT                          );");
-    db.commit();
-    db.close(); */
+void CursusManager::loadExample() {
+    addBranche("Génie Informatique", "GI", "Génie informatique", EnsCredits(10,10,8,30));
+    addBranche("Génie Biologique", "GB", "Génie Biologique", EnsCredits(10,10,8,30));
+    addBranche("Génie Mécanique", "GM", "Génie Mécanique", EnsCredits(10,10,8,30));
 
-    loadBrancheFromFile();
-    loadFiliereFromFile();
-    loadPostBacFromFile();
+    addFiliere("Système et Réseaux info", "SRI", "Système et réseaux informatiques", EnsCredits(20,20,13,25));
+
+    addPostBac("Humanité et Technologie", "HuTech", "Humanité et techno", EnsCredits(15,15,13,8));
+    addPostBac("Tronc Commun", "TC", "Tronc Commun", EnsCredits(15,15,13,8));
 }
 
 void CursusManager::loadBrancheFromFile() {

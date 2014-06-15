@@ -247,6 +247,8 @@ void UVManager::saveToFile()const{}
 void UVManager::loadFromFile(){}
 
 
+
+
 UVManager::Handler UVManager::handler=Handler();
 
 UVManager& UVManager::getInstance(){
