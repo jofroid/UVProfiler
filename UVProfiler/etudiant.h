@@ -27,6 +27,10 @@ private:
      */
     static Etudiant* _instance;
 
+    /**
+     * @brief Etudiant Constructeur de recopie
+     * @param dataRéférence d'un objet de type EtudianData à recopier
+     */
     Etudiant(const EtudiantData& data);
 
 public:
@@ -52,9 +56,11 @@ public:
 
     /*Getters*/
     static Etudiant& getInstance();
-
-    void setDossier(Dossier* dossier) { _dossier=dossier; }
     Dossier* getDossier() { return _dossier; }
+
+    //Setters
+    void setDossier(Dossier* dossier) { _dossier=dossier; }
+
 };
 
 #endif // ETUDIANT_H

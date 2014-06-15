@@ -42,9 +42,12 @@ protected:
      */
     Cursus* _cursusEnCours;
 public:
-    Inscription() : _type(tsemestreUTC), _semestre(Semestre()), _cursusEnCours(NULLPTR) {}
     /**
      * @brief Inscription Constructeur de base
+     */
+    Inscription() : _type(tsemestreUTC), _semestre(Semestre()), _cursusEnCours(NULLPTR) {}
+    /**
+     * @brief Inscription Constructeur initialisant tous les attributs de l'objet
      * @param type Type de l'inscription
      * @param semestre Semestre de l'inscription
      * @param cursus Cursus en cours de l'inscription

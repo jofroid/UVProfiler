@@ -32,12 +32,29 @@ private:
     ~EtudiantManager();
 
     void loadExample();
+    /**
+     * @brief loadFromFile Charge des etudiants depuis un fichier
+     */
     void loadFromFile();
+    /**
+     * @brief saveToFile Sauvegarde les etudiants dans un fichier
+     */
     void saveToFile();
 public:
-
+    /**
+     * @brief addEtudiant Ajoute un etudiant
+     * @param data Etudiant a rajouter
+     */
     void addEtudiant( EtudiantData& data) { _etudiants.insert(data.getLogin(), new EtudiantData( data)); }
+    /**
+     * @brief removeEtudiant Supprime un etudiant
+     * @param login login de l'etudiant a supprimer
+     */
     void removeEtudiant( QString login) { _etudiants.remove(login); }
+    /**
+     * @brief close Ferme le manager
+     */
+    void close() { EtudiantManager* tmp(_instance); _instance = 0; delete tmp; }
 
     /*Getters*/
     static EtudiantManager& getInstance() {
@@ -45,8 +62,6 @@ public:
             _instance = new EtudiantManager;
         return *_instance;
     }
-    void close() { EtudiantManager* tmp(_instance); _instance = 0; delete tmp; }
-
     EtudiantData& getEtudiant(QString login); // retourne un étudiant dont les champs sont vides en cas d'échec
     void printEtudiant();
 };

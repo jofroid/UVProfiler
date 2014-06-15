@@ -58,7 +58,7 @@ private:
     /**
      * @brief loadBrancheFromDB Charge les branches dans le manager par BDD
      */
-    void loadBrancheFromDB(); // Si on rajoute un nouveau cursus, on a juste à rajouter une fonction ici
+    void loadBrancheFromDB();
     /**
      * @brief loadFiliereFromDB Charge les filieres dans le manager par BDD
      */

@@ -10,7 +10,7 @@
 /**
  * @brief The EtudiantData class Classe representant les donnee personnelle d'un etudiant
  */
-class EtudiantData // C'est ce qui sera stocké dans les fichiers, puis chargé par etudiant.
+class EtudiantData
         // Il faut créer un constructeur de Etudiant qui prenne etudiantData.
 {
 protected:
