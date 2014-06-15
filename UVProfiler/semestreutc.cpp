@@ -32,27 +32,15 @@ EnsCredits SemestreUTC::getCredits() {
     return total;
 }
 
-void SemestreUTC::initSemestreUTCFileSystem() {
-    qRegisterMetaTypeStreamOperators<SemestreUTC>("SemestreUTC");
-    qMetaTypeId<SemestreUTC>(); // Teste la validité de la classe EnsCredits
+
+
+void SemestreUTC::serialize(QDataStream &stream) {
+    Inscription::serialize(stream);
+    stream << _notes;
 }
 
-QDataStream& operator<< (QDataStream& out, const SemestreUTC& Valeur)
-{
-    out << (int)Valeur._type
-        << Valeur._semestre
-        << Valeur._cursusEnCours->getCode();
-
-    return out;
+void SemestreUTC::unserialize(QDataStream &stream) {
+    Inscription::unserialize(stream);
+    stream >> _notes;
 }
-QDataStream& operator>> (QDataStream& in, SemestreUTC& Valeur)
-{
-    int retour(0);
-    in >> retour; Valeur._type = (typeInscription)retour;
-    in >> Valeur._semestre;
-    QString code;
-    in >> code;
-    Valeur._cursusEnCours = CursusManager::getInstance().getCursus(code);
 
-    return in;
-}

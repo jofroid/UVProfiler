@@ -50,15 +50,20 @@ public:
     /**
      * @brief ~Inscription Destructeur virtuel permettant de rendre la classe abstraite
      */
-    virtual ~Inscription()=0;
+    virtual ~Inscription();
 
     /*Getters*/
     Cursus* getCursus() { return _cursusEnCours; }
     const Semestre& getSemestre() { return _semestre; }
-    virtual EnsCredits getCredits()=0;
+    virtual EnsCredits getCredits() {}
     typeInscription getType() { return _type; }
     virtual QMap<QString, Notes> getNotes() {}
-
+    virtual void serialize(QDataStream& stream);
+    virtual void unserialize(QDataStream& stream);
 };
+
+Q_DECLARE_METATYPE(Inscription)
+QDataStream& operator<< (QDataStream& out, const Inscription& valeur);
+QDataStream& operator>> (QDataStream& in, Inscription& valeur);
 
 #endif // INSCRIPTION_H

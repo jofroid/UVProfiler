@@ -47,6 +47,9 @@ void Dossier::loadFromFile() {
 
 }
 
+void Dossier::loadFromExample() {
+
+}
 
 // ----------------------------------
 // -        OTHER FUNCTIONS

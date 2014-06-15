@@ -21,7 +21,6 @@ SOURCES += \
     filiere.cpp \
     mineur.cpp \
     mineurbase.cpp \
-    decorateurmineur.cpp \
     uvobligatoires.cpp \
     etudiantmanager.cpp \
     criteresvalidationfiliere.cpp \

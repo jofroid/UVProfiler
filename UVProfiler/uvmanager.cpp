@@ -246,7 +246,14 @@ void UVManager::afficherTable(const QString& table){
 void UVManager::saveToFile()const{}
 void UVManager::loadFromFile(){}
 
-
+void UVManager::loadFromExample() {
+    ajouterUV("LO21", "Initiation à la POO", PA, "CS", 6);
+    ajouterUV("MT09", "Maths", PA, "CS", 6);
+    ajouterUV("NF17", "Initiation BD", P, "TM", 6);
+    ajouterUV("MI01", "ASM", Aut, "TM", 6);
+    ajouterUV("MG01", "Management", PA, "TSH", 6);
+    ajouterUV("SO04", "Initiation droit", Aut, "TSH", 6);
+}
 
 
 UVManager::Handler UVManager::handler=Handler();
