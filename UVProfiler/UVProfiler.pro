@@ -59,7 +59,7 @@ HEADERS += \
     etudiantdata.h \
     etudiantdata.h \
     dossierdata.h \
-    dossierdata.h
 
 FORMS += \
     ../interface v0.1 .ui
+    Fenetre.h

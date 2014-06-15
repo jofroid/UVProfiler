@@ -55,8 +55,7 @@ public:
     friend QDataStream& operator<< (QDataStream&, const Semestre&);
     friend QDataStream& operator>> (QDataStream&, Semestre&);
 
-    void afficher() { QString str;
-                      str<<_saison; std::cout<<str.toStdString()<<" "<<_annee; }
+    void afficher() { QString str; str<<_saison; std::cout<<str.toStdString()<<_annee; }
 };
 
 Q_DECLARE_METATYPE(Semestre)

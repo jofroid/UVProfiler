@@ -26,6 +26,10 @@ class Inscription
 {
 protected:
     /**
+     * @brief _codeEtudiant Code de l'étudiant s'étant inscrit
+     */
+    QString _codeEtudiant;
+    /**
      * @brief _type Type de l'inscription
      */
     typeInscription _type;

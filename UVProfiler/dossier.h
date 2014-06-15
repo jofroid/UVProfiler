@@ -7,6 +7,7 @@
 #include <QtSql>
 #include <QMap>
 #include <QString>
+#include "dossierdata.h"
 #include "postbac.h"
 #include "branche.h"
 #include "filiere.h"
@@ -15,6 +16,9 @@
 #include "enscredits.h"
 #include "semestre.h"
 
+class DossierData;
+
+class CursusManager;
 /**
  * @brief The Dossier class Classe representant le dossier d'un etudiant
  */
@@ -70,6 +74,10 @@ private:
      */
     void load();
     /**
+     * @brief save Sauvegarde le dossier
+     */
+    void save();
+    /**
      * @brief loadFromDB Charge un dossier depuis la DB
      */
     void loadFromDB();
@@ -77,6 +85,10 @@ private:
      * @brief loadFromFile Charge un dossier depuis un fichier
      */
     void loadFromFile();
+    /**
+     * @brief saveToFile Sauvegarde le dossier depuis un fichier
+     */
+    void saveToFile();
     /**
      * @brief loadFromExample Charge des valeurs prédéfinies
      */
@@ -99,6 +111,8 @@ public:
      * @param username login de l'etudiant
      */
     Dossier(QString username);
+    Dossier(DossierData& data);
+    ~Dossier() { save(); }
 
     // Setters
     void setSemestrePB  (unsigned int a)    { _semestrePB   = a;        }
@@ -110,6 +124,7 @@ public:
     void setCreditsPostBac(const EnsCredits& credits);
 
     // Getters
+    QString      getlogin()       { return _login;           }
     unsigned int getSemestrePB()  { return _semestrePB;      }
     unsigned int getSemestreB()   { return _semestreB;       }
     PostBac&     getPostBac()     { return *_postBac;        }
@@ -120,6 +135,7 @@ public:
     QMap<Semestre, Inscription*> getInscriptions() { return _inscriptions; }
     EnsCredits   getTotalCreditsPostBac() { return _creditsTotauxPostBac; }
     EnsCredits   getTotalCreditsBranche() { return _creditsTotauxBranche; }
+    EnsCredits   getTotalCreditsFiliere() { return _creditsTotauxFiliere; }
 
     // Other functions
     /**
@@ -131,6 +147,9 @@ public:
      * @brief updateCredits Met a jour les credits obtenus
      */
     void updateCredits();
+
+    void loada() { load();}
+    void savea() { saveToFile();}
 };
 
 #endif // DOSSIER_H
