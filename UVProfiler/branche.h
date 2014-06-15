@@ -2,7 +2,7 @@
 #define BRANCHE_H
 
 /*!
- * \file branche.h
+ * @file branche.h
  */
 #include <QString>
 #include <QVariant>

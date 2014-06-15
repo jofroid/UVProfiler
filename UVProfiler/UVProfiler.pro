@@ -56,4 +56,5 @@ HEADERS += \
     selectionparmi.h \
     semestre.h \
     UVProfiler.h \
+    etudiantdata.h \
     etudiantdata.h
