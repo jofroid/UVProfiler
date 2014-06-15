@@ -74,6 +74,10 @@ private:
      */
     void load();
     /**
+     * @brief save Sauvegarde le dossier
+     */
+    void save();
+    /**
      * @brief loadFromDB Charge un dossier depuis la DB
      */
     void loadFromDB();
@@ -81,6 +85,10 @@ private:
      * @brief loadFromFile Charge un dossier depuis un fichier
      */
     void loadFromFile();
+    /**
+     * @brief saveToFile Sauvegarde le dossier depuis un fichier
+     */
+    void saveToFile();
     /**
      * @brief loadFromExample Charge des valeurs prédéfinies
      */
@@ -104,6 +112,7 @@ public:
      */
     Dossier(QString username);
     Dossier(DossierData& data);
+    ~Dossier() { save(); }
 
     // Setters
     void setSemestrePB  (unsigned int a)    { _semestrePB   = a;        }
@@ -138,6 +147,9 @@ public:
      * @brief updateCredits Met a jour les credits obtenus
      */
     void updateCredits();
+
+    void loada() { load();}
+    void savea() { saveToFile();}
 };
 
 #endif // DOSSIER_H

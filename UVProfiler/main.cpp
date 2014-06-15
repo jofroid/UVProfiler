@@ -144,6 +144,7 @@ void testValidation() {
     alex.logout();
     EtudiantManager::getInstance().printEtudiant();
     Etudiant& a = Etudiant::login("bjamai");
+    Dossier& dossier = *a.getDossier();
 
 
     EtudiantManager::getInstance().close();

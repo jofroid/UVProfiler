@@ -52,12 +52,62 @@ void Dossier::loadFromDB() { // Non fonctionnel ...
 }
 
 void Dossier::loadFromFile() {
+    QSettings fichier("UVProfiler.ini", QSettings::IniFormat);
+
+
+    fichier.beginGroup("dossier"); // Chargement du dossier
+      DossierData data;
+      const QStringList childKeys = fichier.childKeys();
+      foreach (const QString& childKey, childKeys) {
+          data = fichier.value(childKey, QVariant::fromValue(DossierData() )).value<DossierData>();
+          if(data.getlogin()==_login)
+              break; // On sort de la boucle car on a trouvé le dossier qui nous intéresse
+      }
+    fichier.endGroup();
+    if(data.getlogin()==_login) {
+        _postBac = CursusManager::getInstance().getPostBac(data.getPostBac());
+        _branche = CursusManager::getInstance().getBranche(data.getBranche());
+        _filiere = CursusManager::getInstance().getFiliere(data.getFiliere());
+        _mineur  = CursusManager::getInstance().getFiliere(data.getFiliere());
+        _semestreB  = data.getSemestreB();
+        _semestrePB = data.getSemestrePB();
+        updateCredits();
+    }
 
 }
 
 void Dossier::loadFromExample() {
 
 }
+
+// ----------------------------------
+// -        SAVE DOSSIER
+// ----------------------------------
+
+void Dossier::save() {
+    saveToFile();
+}
+
+void Dossier::saveToFile() {
+    QSettings fichier("UVProfiler.ini", QSettings::IniFormat);
+
+    fichier.beginGroup("dossier"); // On sauvegarde la partie dossier
+    DossierData data(*this);
+    fichier.setValue(data.getlogin(), QVariant::fromValue(data));
+    fichier.endGroup();
+    fichier.sync();
+
+    QSettings fichierInscription("Inscription.ini", QSettings::IniFormat);
+    fichierInscription.beginGroup(data.getlogin()); // On sauvegarde la partie inscription
+    QMap<Semestre, Inscription*>::iterator it;
+    for(it=_inscriptions.begin(); it!=_inscriptions.end(); it++) {
+        fichierInscription.setValue("", QVariant::fromValue( *(it.value()) ) );
+    }
+    fichierInscription.endGroup();
+    fichierInscription.sync();
+}
+
+
 
 // ----------------------------------
 // -        OTHER FUNCTIONS

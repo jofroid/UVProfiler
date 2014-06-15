@@ -11,14 +11,13 @@ DossierData::DossierData(Dossier source): _login(source.getlogin()), _semestreB(
         _filiere = source.getFiliere().getCode();
     if(&source.getMineur())
         _mineur = source.getMineur().getCode();
-    source.updateCredits();
-    _creditsTotauxBranche = source.getTotalCreditsBranche();
-    _creditsTotauxPostBac = source.getTotalCreditsPostBac();
-    _creditsTotauxFiliere = source.getTotalCreditsFiliere();
 }
 
 DossierData::DossierData(): _login(""), _semestreB(0), _semestrePB(0), _postBac(""), _branche(""), _filiere(""), _mineur("")
     {}
+
+DossierData::DossierData(const DossierData& copie): _login(copie._login), _semestreB(copie._semestreB), _semestrePB(copie._semestrePB),\
+    _postBac(copie._postBac), _branche(copie._branche), _filiere(copie._filiere), _mineur(copie._mineur) {}
 
 void DossierData::initDossierDataFileSystem() {
     qRegisterMetaTypeStreamOperators<DossierData>("DossierData");
@@ -28,8 +27,7 @@ void DossierData::initDossierDataFileSystem() {
 QDataStream& operator<< (QDataStream& out, const DossierData& Valeur)
 {
     out << Valeur._login                << Valeur._branche
-        << Valeur._creditsTotauxBranche << Valeur._creditsTotauxFiliere
-        << Valeur._creditsTotauxPostBac << Valeur._filiere
+        << Valeur._filiere
         << Valeur._mineur               << Valeur._postBac
         << Valeur._semestreB            << Valeur._semestrePB;
 
@@ -37,9 +35,8 @@ QDataStream& operator<< (QDataStream& out, const DossierData& Valeur)
 }
 QDataStream& operator>> (QDataStream& in, DossierData& Valeur)
 {
-    in >> Valeur._login; in                 >> Valeur._branche; in              >> Valeur._creditsTotauxBranche;
-    in >> Valeur._creditsTotauxFiliere; in  >> Valeur._creditsTotauxPostBac; in >> Valeur._filiere;
-    in >> Valeur._mineur; in                >> Valeur._postBac; in              >> Valeur._semestreB;
+    in >> Valeur._login;        in >> Valeur._branche; in >> Valeur._filiere;
+    in >> Valeur._mineur;       in >> Valeur._postBac; in >> Valeur._semestreB;
     in >> Valeur._semestrePB;
 
     return in;

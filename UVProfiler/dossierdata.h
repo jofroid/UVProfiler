@@ -20,21 +20,10 @@ protected:
     QString _branche;
     QString _filiere;
     QString _mineur;
-    /**
-     * @brief _creditsTotauxPostBac Total des credits obtenus en cursus postbac
-     */
-    EnsCredits _creditsTotauxPostBac;
-    /**
-     * @brief _creditsTotauxBranche Total des credits obtenus en branche
-     */
-    EnsCredits _creditsTotauxBranche;
-    /**
-     * @brief _creditsTotauxBrancheFiliere Total des credits obtenus en filière
-     */
-    EnsCredits _creditsTotauxFiliere;
 public:
     DossierData(Dossier source);
     DossierData();
+    DossierData(const DossierData& copie);
 
     QString      getlogin()       { return _login;           }
     unsigned int getSemestrePB()  { return _semestrePB;      }

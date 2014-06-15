@@ -22,7 +22,7 @@ Etudiant& Etudiant::createAccount(QString login, QString nom, QString prenom) {
 Etudiant& Etudiant::login(QString login) {
     if(!_instance) // Donc si un étudiant est déjà en cours d'utilisation
         delete _instance; // On déconnecte l'étudiant en cours
-    EtudiantData data(EtudiantManager::getInstance().getEtudiant(login) );
+    EtudiantData data(EtudiantManager::getInstance().getEtudiant(login) ); // on regarde si l'étudiant est dans notre fichier
     if(data.getLogin()== "" )
         throw UTProfilerException(QString("erreur dans Etudiant, le login ")+login+QString(" n'existe pas"));
     _instance = new Etudiant( data);
