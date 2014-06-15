@@ -22,6 +22,10 @@ public:
      * @brief Filiere Constructeur de base
      */
     Filiere() : Cursus(), _branche(NULL) {}
+    /**
+     * @brief Filiere Constructeur de recopie
+     * @param copie Reference d'un objet Filiere a recopier
+     */
     Filiere(const Filiere& copie) : Cursus(copie._nom, copie._code, copie._description, copie._creditsNecessaires),
         _branche(copie._branche) {}
     /**

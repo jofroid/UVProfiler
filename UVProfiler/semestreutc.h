@@ -25,6 +25,10 @@ protected:
      */
     QMap<QString, Notes> _notes;
 public:
+    /**
+     * @brief SemestreUTC Constructeur de recopie
+     * @param copie Reference d'un objet SemestreUTC a recopier
+     */
     SemestreUTC(const SemestreUTC& copie) : Inscription(tsemestreUTC, copie._semestre, copie._cursusEnCours) {}
     /**
      * @brief SemestreUTC Constructeur de base
@@ -62,13 +66,12 @@ public:
     /*Getters*/
     QMap<QString, UV*> getUV()  { return _choixUVs;                                                          }
     virtual QMap<QString, Notes> getNotes() { return _notes; }
+    EnsCredits getCredits();
 
 
     /*Setters*/
     void setNote(const QString& code, const Notes& note);
     void setNote(UV* uv,              const Notes& note);
-
-    EnsCredits getCredits();
 
     virtual void serialize(QDataStream& stream);
     virtual void unserialize(QDataStream& stream);

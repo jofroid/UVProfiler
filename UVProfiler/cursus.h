@@ -50,7 +50,7 @@ public:
     /**
      * @brief ~Cursus Destructeur virtuel pur permettant de rendre la classe abstraite
      */
-    virtual ~Cursus()=0; //comme je n'ai pas de méthode virtuelle pour le moment, le destructeur fera l'affaire
+    virtual ~Cursus()=0;
 
     /*Getters*/
     void setNom(const QString& nom)                     {_nom = nom;}

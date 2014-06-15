@@ -30,7 +30,14 @@ private:
     EnsCredits _creditsObtenus;
 
 public:
+    /**
+     * @brief SemestreEtranger Constructeur de base
+     */
     SemestreEtranger() : Inscription(tsemestreEtranger), _pronosticCreditsMax(0), _pronosticCreditsMin(0) {}
+    /**
+     * @brief SemestreEtranger Constructeur de recopie
+     * @param copie Reference d'un objet SemestreEtranger a recopier
+     */
     SemestreEtranger(const SemestreEtranger& copie) :\
         Inscription(tsemestreEtranger, copie._semestre, copie._cursusEnCours), _pronosticCreditsMax(copie._pronosticCreditsMax),
         _pronosticCreditsMin(copie._pronosticCreditsMin), _creditsObtenus(copie._creditsObtenus) {}

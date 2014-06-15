@@ -130,9 +130,7 @@ public:
     /**
      * @brief updateCredits Met a jour les credits obtenus
      */
-    void updateCredits(); // met à jour la valeur de _creditsTotauxPostBac et de _creditsTotauxBranche à partir
-                          //    des Inscriptions
-
+    void updateCredits();
 };
 
 #endif // DOSSIER_H
