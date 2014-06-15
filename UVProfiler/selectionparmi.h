@@ -30,10 +30,9 @@ private:
 public:
     /**
      * @brief SelectionParmi Constructeur de base
-     * @param cursus Cursus associe
      * @param nbUvsNecessaires Nombre d'UVs necessaires pour la validation
      */
-    SelectionParmi(Cursus* cursus, unsigned int nbUvsNecessaires) :\
+    SelectionParmi(unsigned int nbUvsNecessaires) :\
         _nbUvsNecessaires(nbUvsNecessaires) {}
     /**
      * @brief validation Test de la validation du critere

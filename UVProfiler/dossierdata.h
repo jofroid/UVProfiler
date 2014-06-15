@@ -1,12 +1,16 @@
 #ifndef DOSSIERDATA_H
 #define DOSSIERDATA_H
 
+
 #include <QString>
 #include "dossier.h"
 #include "enscredits.h"
 
 class Dossier;
 
+/**
+ * @brief The DossierData class Classe representant les donnees d'un dossier, permettant de plus facilement de le sauvegarder ou de charger un dossier
+ */
 class DossierData
 {
 protected:
