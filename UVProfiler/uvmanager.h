@@ -80,6 +80,10 @@ private:
      * @brief loadFromFile Charge la liste d'UV depuis un fichier
      */
     void loadFromFile();
+    /**
+     * @brief loadFromExample Charge une liste d'UV prédéfinie
+     */
+    void loadFromExample();
 
     friend struct Handler;
     /**
@@ -99,10 +103,11 @@ public:
      * @brief load Charge les UV dans le manager
      */
     void load(){
-        if(_ouverture == fichier)
+        loadFromExample();
+        /*if(_ouverture == fichier)
             loadFromFile();
         else if(_ouverture == DB )
-            loadFromDB();
+            loadFromDB();*/
         }
     /**
      * @brief save Sauvegarde les UV dans le manager

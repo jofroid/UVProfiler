@@ -8,6 +8,7 @@
 #include <QString>
 #include <QFile>
 #include <QSettings>
+#include <iostream>
 #include "etudiantdata.h"
 
 /**
@@ -44,8 +45,10 @@ public:
             _instance = new EtudiantManager;
         return *_instance;
     }
+    void close() { EtudiantManager* tmp(_instance); _instance = 0; delete tmp; }
 
     EtudiantData& getEtudiant(QString login); // retourne un étudiant dont les champs sont vides en cas d'échec
+    void printEtudiant();
 };
 
 #endif // ETUDIANTMANAGER_H

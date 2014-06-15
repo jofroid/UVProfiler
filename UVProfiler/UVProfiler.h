@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <QString>
+#include <QVariant>
 /*
 #include "branche.h"
 #include "criteresvalidationfiliere.h"
@@ -35,6 +36,9 @@ enum Saison { P, Aut, PA, X };
 QString& operator<<(QString& out, Saison saison);
 
 enum Notes { A, B, C, D, E, FX, F, enCours};
+
+QDataStream& operator<<(QDataStream& stream, Notes const& valeur);
+QDataStream& operator>>(QDataStream& stream, Notes& valeur);
 
 
 #endif // UVPROFILER

@@ -19,3 +19,15 @@ QString& operator<<(QString& out, Saison saison) {
     }
     return out;
 }
+
+QDataStream& operator<<(QDataStream& stream, Notes const& valeur) {
+    stream<<(int)valeur;
+    return stream;
+}
+
+QDataStream& operator>>(QDataStream& stream, Notes& valeur) {
+    int a(0);
+    stream >> a;
+    valeur =(Notes)a;
+    return stream;
+}

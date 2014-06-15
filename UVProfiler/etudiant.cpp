@@ -3,7 +3,7 @@
 Etudiant* Etudiant::_instance(NULL);
 
 Etudiant::Etudiant(const EtudiantData& data) : EtudiantData(data), _dossier(NULL) {
-    loadDossier(); // affecte _dossier à soit un nouveau dossier, soit un dossier chargé.
+    _dossier = new Dossier(_login);
 }
 
 Etudiant::~Etudiant() {}
@@ -16,7 +16,6 @@ Etudiant& Etudiant::createAccount(QString login, QString nom, QString prenom) {
     EtudiantData data(login, nom, prenom);
     _instance = new Etudiant( data);
     EtudiantManager::getInstance().addEtudiant( data);
-    _dossier = new Dossier(_instance->getLogin());
     return *_instance;
 }
 
@@ -27,7 +26,6 @@ Etudiant& Etudiant::login(QString login) {
     if(data.getLogin()== "" )
         throw UTProfilerException(QString("erreur dans Etudiant, le login ")+login+QString(" n'existe pas"));
     _instance = new Etudiant( data);
-    _dossier = new Dossier(_instance->getLogin());
     return *_instance;
 }
 

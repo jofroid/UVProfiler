@@ -3,10 +3,19 @@
 EtudiantManager* EtudiantManager::_instance=0;
 
 EtudiantManager::EtudiantManager() {
-    loadFromFile();
+    if(!QFile::exists("UVProfiler.ini"))
+        loadExample();
+    else
+        loadFromFile();
 }
 EtudiantManager::~EtudiantManager() {
     saveToFile();
+}
+
+void EtudiantManager::loadExample() {
+    _etudiants.insert("jdupon", new EtudiantData("jdupon", "Dupont", "Jean"));
+    _etudiants.insert("bjamai", new EtudiantData("bjamai", "Jamais", "Bernard"));
+    _etudiants.insert("tmachi", new EtudiantData("tmachi", "Machin", "truc"));
 }
 
 void EtudiantManager::loadFromFile() {
@@ -14,8 +23,8 @@ void EtudiantManager::loadFromFile() {
     fichier.beginGroup("etudiant");
     const QStringList childKeys = fichier.childKeys();
     foreach (const QString& childKey, childKeys) {
-        EtudiantData copie( fichier.value(childKey, QVariant::fromValue(EtudiantData() )).value<EtudiantData>() );
-        _etudiants.insert(copie.getLogin(), &copie);
+        EtudiantData* copie = new EtudiantData( fichier.value(childKey, QVariant::fromValue(EtudiantData() )).value<EtudiantData>() );
+        _etudiants.insert(copie->getLogin(), copie);
     }
     fichier.endGroup();
 }
@@ -37,6 +46,14 @@ EtudiantData& EtudiantManager::getEtudiant(QString login) {
     EtudiantData* fail= new EtudiantData("", "", "");
     return *fail;
 }
+
+void EtudiantManager::printEtudiant() {
+    QMap<QString, EtudiantData*>::const_iterator it;
+    for(it=_etudiants.constBegin(); it!=_etudiants.constEnd(); it++) {
+        std::cout<<it.value()->getLogin().toStdString()<<std::endl;
+    }
+}
+
 
 
 

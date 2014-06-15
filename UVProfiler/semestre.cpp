@@ -26,7 +26,7 @@ QDataStream& operator<< (QDataStream& out, const Semestre& Valeur) {
 
 QDataStream& operator>> (QDataStream& in, Semestre& Valeur){
     int a(0);
-    in >> a; // <- en cours d'implémentation, mais plante encore
+    in >> a;
     in >> Valeur._annee;
     Valeur._saison=(Saison)a;
     return in;

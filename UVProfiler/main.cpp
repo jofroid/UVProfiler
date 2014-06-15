@@ -83,7 +83,6 @@ void initFileSystem() {
     Filiere::initFiliereFileSystem();
     Semestre::initSemestreSystem();
     EtudiantData::initEtudiantDataFileSystem();
-    SemestreEtranger::initSemestreEtrangerFileSystem();
 
 }
 
@@ -139,23 +138,11 @@ void testEtudiant() {
 }
 
 void testValidation() {
-    Semestre a(Aut, 14), b(P, 14), c(Aut, 15);
+    Etudiant& alex = Etudiant::createAccount("test", "alpha", "beta");
+    alex.logout();
+    EtudiantManager::getInstance().printEtudiant();
+    Etudiant& a = Etudiant::login("bjamai");
 
-    QSettings fichier("Semestre.ini", QSettings::IniFormat);
-    fichier.beginGroup("semestre");
-    fichier.setValue("a", QVariant::fromValue(a ));
-    fichier.setValue("b", QVariant::fromValue(b ));
-    fichier.setValue("c", QVariant::fromValue(c ));
-    fichier.endGroup();
-    fichier.sync();
 
-    int i(0);
-    fichier.beginGroup("semestre");
-    const QStringList childKeys = fichier.childKeys();
-    foreach (const QString& childKey, childKeys) {
-        fichier.value(childKey, QVariant::fromValue(Semestre() )).value<Semestre>().afficher();
-        std::cout<<std::endl;
-    }
-    fichier.endGroup();
-
+    EtudiantManager::getInstance().close();
 }
