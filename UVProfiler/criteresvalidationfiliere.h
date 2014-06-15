@@ -1,12 +1,12 @@
 #ifndef CRITERESVALIDATIONFILIERE_H
 #define CRITERESVALIDATIONFILIERE_H
 
-/*!
- * \file criteresvalidationfiliere.h
+/**
+ * @file criteresvalidationfiliere.h
  */
 
 /**
- * @brief The CriteresValidationFiliere class representant un validateur de criteres
+ * @brief The CriteresValidationFiliere class Classe representant un validateur de criteres
  */
 class CriteresValidationFiliere
 {

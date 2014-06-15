@@ -27,7 +27,7 @@
 #include "tsh.h"
 #include "uv.h"
 #include "uvmanager.h"
-#include "uvobligatoires.h" //*/
+#include "uvobligatoires.h" */
 
 #define NULLPTR 0
 
@@ -36,12 +36,5 @@ QString& operator<<(QString& out, Saison saison);
 
 enum Notes { A, B, C, D, E, FX, F, enCours};
 
-class UTProfilerException{
-public:
-   UTProfilerException(const QString& message):info(message){}
-   QString getInfo() const { return info; }
-private:
-   QString info;
-};
 
 #endif // UVPROFILER
