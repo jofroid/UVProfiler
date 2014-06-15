@@ -64,7 +64,8 @@ public:
     QString getDescription()            { return _description;          }
     EnsCredits getCreditsNecessaires()  { return _creditsNecessaires;   }
 
-    virtual void serialize(QDataStream& stream);
+    static void initCursusFileSystem();
+    virtual void serialize(QDataStream& stream) const;
     virtual void unserialize(QDataStream& stream);
 };
 

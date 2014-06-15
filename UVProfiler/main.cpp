@@ -31,7 +31,7 @@
 void initFileSystem();
 void testDossier();
 void testEtudiant();
-void testValidation();
+void testEtudiantDossier();
 
 int main(int argc,char **argv)
 {
@@ -68,7 +68,7 @@ int main(int argc,char **argv)
             //uvTest = manager.getUV("TN01");
             //std::cout<<uvTest.getNom().toStdString()<<std::endl;
 */
-            testValidation();
+            testEtudiantDossier();
             std::cout<<"\nDone\n";
 
     }
@@ -80,12 +80,11 @@ int main(int argc,char **argv)
 
 void initFileSystem() {
     EnsCredits::initEnsCreditsSystem();
-    Branche::initBrancheSystem();
-    Filiere::initFiliereFileSystem();
+    Cursus::initCursusFileSystem();
     Semestre::initSemestreSystem();
     EtudiantData::initEtudiantDataFileSystem();
     DossierData::initDossierDataFileSystem();
-
+    Inscription::initInscriptionFileSystem();
 }
 
 
@@ -139,7 +138,7 @@ void testEtudiant() {
     fichier.endGroup();
 }
 
-void testValidation() {
+void testEtudiantDossier() {
     std::cout<<"Liste des etudiants charges :\n";
     EtudiantManager::getInstance().printEtudiant();
     Etudiant& a = Etudiant::login("bjamai");

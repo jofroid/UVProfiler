@@ -2,7 +2,12 @@
 
 Inscription::~Inscription() {}
 
-void Inscription::serialize(QDataStream& stream) {
+void Inscription::initInscriptionFileSystem() {   // Permet de serialiser la classe Inscription
+    qRegisterMetaTypeStreamOperators<Inscription>("Inscription");
+    qMetaTypeId<Inscription>(); // Teste la validité de la classe Inscription
+}
+
+void Inscription::serialize(QDataStream& stream) const {
     stream <<(int)_type
            <<_semestre
            <<_cursusEnCours->getCode();
@@ -16,7 +21,7 @@ void Inscription::unserialize(QDataStream& stream) {
     stream>>code; CursusManager::getInstance().getCursus(code);
 }
 
-QDataStream& operator<< (QDataStream& out, Inscription& valeur) {
+QDataStream& operator<< (QDataStream& out, const Inscription& valeur) {
     valeur.serialize(out);
     return out;
 }

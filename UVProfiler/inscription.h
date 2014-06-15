@@ -65,7 +65,9 @@ public:
     virtual EnsCredits getCredits() {}
     typeInscription getType() { return _type; }
     virtual QMap<QString, Notes> getNotes() {}
-    virtual void serialize(QDataStream& stream);
+	
+	static void initInscriptionFileSystem();
+    virtual void serialize(QDataStream& stream) const;
     virtual void unserialize(QDataStream& stream);
 };
 

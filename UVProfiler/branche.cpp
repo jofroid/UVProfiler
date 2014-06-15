@@ -8,30 +8,15 @@
 Branche::Branche(const Branche& copie) : \
     Cursus(copie._nom, copie._code, copie._description, copie._creditsNecessaires), _creditsPCB(copie._creditsPCB) {}
 
-void Branche::initBrancheSystem() {
-    qRegisterMetaTypeStreamOperators<Branche>("Branche");
-    qMetaTypeId<Branche>(); // Teste la validité de la classe Branche
+
+void Branche::serialize(QDataStream &stream) const {
+    Cursus::serialize(stream);
+    stream << _creditsPCB;
 }
 
-QDataStream& operator<< (QDataStream& out, const Branche& Valeur)
-{
-    out << Valeur._nom
-        << Valeur._code
-        << Valeur._description
-        << Valeur._creditsNecessaires
-        << Valeur._creditsPCB;
-
-    return out;
-}
-QDataStream& operator>> (QDataStream& in, Branche& Valeur)
-{
-    in >> Valeur._nom;
-    in >> Valeur._code;
-    in >> Valeur._description;
-    in >> Valeur._creditsNecessaires;
-    in >> Valeur._creditsPCB;
-
-    return in;
+void Branche::unserialize(QDataStream &stream) {
+    Cursus::unserialize(stream);
+    stream >> _creditsPCB;
 }
 
 

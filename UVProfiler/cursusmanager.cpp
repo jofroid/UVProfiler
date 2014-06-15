@@ -53,10 +53,13 @@ void CursusManager::addPostBac(const QString& nom, const QString& code, const QS
 // ----------------------------------
 
 void CursusManager::load() {
-    loadExample();
-    //loadBrancheFromFile();
-    //loadFiliereFromFile();
-    //loadPostBacFromFile();
+    if(!QFile::exists("Cursus.ini"))
+        loadExample();
+    else {
+        loadBrancheFromFile();
+        loadFiliereFromFile();
+        loadPostBacFromFile();
+    }
 }
 
 void CursusManager::loadExample() {
@@ -105,7 +108,20 @@ void CursusManager::loadFiliereFromFile() { /*
 }
 
 void CursusManager::loadPostBacFromFile() {
+    if( !_postBac.isEmpty() ) {
+        qDeleteAll(_postBac);
+        _postBac.clear();      // vide la QMap
+    }
 
+    QSettings fichier("Cursus.ini", QSettings::IniFormat);
+
+    fichier.beginGroup("PostBac");
+    const QStringList childKeys = fichier.childKeys(); // Obtient la liste des clés
+    foreach (const QString& childKey, childKeys) {
+        PostBac* postbac = new PostBac(fichier.value(childKey, QVariant::fromValue(PostBac() )).value<PostBac>() );
+        _postBac.insert(postbac->getNom(), postbac);
+    }
+    fichier.endGroup();
 }
 
 void CursusManager::loadBrancheFromDB() { /*
@@ -197,14 +213,12 @@ void CursusManager::saveBrancheToFile() {
     QSettings fichier("Cursus.ini", QSettings::IniFormat);
 
     fichier.beginGroup("Branche");
-    QMap<QString, Branche*>::const_iterator it;
-    for(it = _branche.constBegin(); it!=_branche.constEnd(); ++it) {
+    QMap<QString, PostBac*>::const_iterator it;
+    for(it = _postBac.constBegin(); it!=_postBac.constEnd(); ++it) {
         fichier.setValue(it.value()->getNom(), QVariant::fromValue( *it.value() ));
     }
     fichier.endGroup();
     fichier.sync(); //*/
-
-    std::cout<<"Save complete !\n";
 }
 
 void CursusManager::saveFiliereToFile() {
@@ -212,6 +226,14 @@ void CursusManager::saveFiliereToFile() {
 }
 
 void CursusManager::savePostBacToFile() {
+    QSettings fichier("Cursus.ini", QSettings::IniFormat);
 
+    fichier.beginGroup("PostBac");
+    QMap<QString, Branche*>::const_iterator it;
+    for(it = _branche.constBegin(); it!=_branche.constEnd(); ++it) {
+        fichier.setValue(it.value()->getNom(), QVariant::fromValue( *it.value() ));
+    }
+    fichier.endGroup();
+    fichier.sync();
 }
 

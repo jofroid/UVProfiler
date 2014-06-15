@@ -62,7 +62,7 @@ public:
     EnsCredits getCreditsMax()  { return _pronosticCreditsMax;  }
     EnsCredits getCredits()     { return _creditsObtenus;       }
 
-    void serialize(QDataStream& stream);
+    void serialize(QDataStream& stream) const;
     void unserialize(QDataStream& stream);
 
 

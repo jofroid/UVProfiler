@@ -55,17 +55,12 @@ public:
      */
     ~Branche() {}
 
-    /**
-     * @brief initBrancheSystem
-     */
-    static void initBrancheSystem();
-    friend QDataStream& operator<< (QDataStream&, const Branche&);
-    friend QDataStream& operator>> (QDataStream&, Branche&);
+    virtual void serialize(QDataStream& stream) const;
+    virtual void unserialize(QDataStream& stream);
 };
 
 Q_DECLARE_METATYPE(Branche)
-QDataStream& operator<< (QDataStream& out, const Branche& Valeur);
-QDataStream& operator>> (QDataStream& in, Branche& Valeur);
+
 
 
 #endif // BRANCHE_H

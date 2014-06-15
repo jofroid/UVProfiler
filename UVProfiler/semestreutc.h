@@ -73,7 +73,7 @@ public:
     void setNote(const QString& code, const Notes& note);
     void setNote(UV* uv,              const Notes& note);
 
-    virtual void serialize(QDataStream& stream);
+    virtual void serialize(QDataStream& stream) const;
     virtual void unserialize(QDataStream& stream);
 };
 

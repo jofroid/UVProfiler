@@ -2,7 +2,12 @@
 
 Cursus::~Cursus() {}
 
-void Cursus::serialize(QDataStream& stream) {
+void Cursus::initCursusFileSystem() {   // Permet de serialiser la classe Cursus
+    qRegisterMetaTypeStreamOperators<Cursus>("Cursus");
+    qMetaTypeId<Cursus>(); // Teste la validité de la classe Cursus
+}
+
+void Cursus::serialize(QDataStream& stream) const {
     stream <<_nom
            <<_code
            <<_description
@@ -16,7 +21,7 @@ void Cursus::unserialize(QDataStream& stream) {
     stream >> _creditsNecessaires;
 }
 
-QDataStream& operator<< (QDataStream& out, Cursus& valeur) {
+QDataStream& operator<< (QDataStream& out, const Cursus& valeur) {
     valeur.serialize(out);
     return out;
 }

@@ -34,7 +34,7 @@ EnsCredits SemestreUTC::getCredits() {
 
 
 
-void SemestreUTC::serialize(QDataStream &stream) {
+void SemestreUTC::serialize(QDataStream &stream) const {
     Inscription::serialize(stream);
     stream << _notes;
 }

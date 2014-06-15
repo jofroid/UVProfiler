@@ -24,7 +24,7 @@ QDataStream& operator>> (QDataStream& in, SemestreEtranger& Valeur)
     return in;
 } */
 
-void SemestreEtranger::serialize(QDataStream &stream) {
+void SemestreEtranger::serialize(QDataStream &stream) const {
     Inscription::serialize( stream);
     serialize(stream);
     stream << _pronosticCreditsMax

@@ -35,12 +35,11 @@ public:
         Cursus::Cursus(copie._nom, copie._code, copie._description, copie._creditsNecessaires) {}
     void initPostBacSystem();
 
-    friend QDataStream& operator<< (QDataStream&, const PostBac&);
-    friend QDataStream& operator>> (QDataStream&, PostBac&);
+    virtual void serialize(QDataStream& stream) const;
+    virtual void unserialize(QDataStream& stream);
 };
 
 Q_DECLARE_METATYPE(PostBac)
-QDataStream& operator<< (QDataStream& out, const PostBac& Valeur);
-QDataStream& operator>> (QDataStream& in, PostBac& Valeur);
+
 
 #endif // POSTBAC_H
