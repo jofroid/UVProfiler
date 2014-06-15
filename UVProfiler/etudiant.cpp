@@ -2,6 +2,10 @@
 
 Etudiant* Etudiant::_instance(NULL);
 
+Etudiant::Etudiant(const EtudiantData& data) : EtudiantData(data), _dossier(NULL) {
+    loadDossier(); // affecte _dossier à soit un nouveau dossier, soit un dossier chargé.
+}
+
 Etudiant::~Etudiant() {}
 
 
@@ -11,6 +15,7 @@ Etudiant& Etudiant::createAccount(QString login, QString nom, QString prenom) {
         delete _instance; // On déconnecte l'étudiant en cours
     EtudiantData data(login, nom, prenom);
     _instance = new Etudiant( data);
+    EtudiantManager::getInstance().addEtudiant( data);
     return *_instance;
 }
 
@@ -29,3 +34,16 @@ void Etudiant::logout() {
         delete _instance;
 }
 
+Etudiant& Etudiant::getInstance() { if(_instance) return *_instance; }
+
+void Etudiant::loadDossier() {
+    loadDossierFromFile();
+}
+
+void Etudiant::loadDossierFromFile() {
+
+}
+
+void Etudiant::loadDossierFromDB() {
+
+}

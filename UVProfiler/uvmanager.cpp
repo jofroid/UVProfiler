@@ -9,11 +9,10 @@
 #include <windows.h>
 
 
-UVManager::UVManager():_file(""), _ouverture(DB), _modification(false){}
+UVManager::UVManager():_file(""), _ouverture(fichier), _modification(false){}
 
 UVManager::~UVManager(){
-    if (_file != "")
-        save();
+    save();
 }
 
 void UVManager::addItem(UV* uv){

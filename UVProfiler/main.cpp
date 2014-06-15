@@ -11,6 +11,7 @@
 #include "cs.h"
 #include "semestre.h"
 #include "semestreutc.h"
+#include "etudiant.h"
 #include "etudiantdata.h"
 #include "dossier.h"
 #include "windows.h"
@@ -20,6 +21,7 @@
 void initFileSystem();
 void testDossier();
 void testEtudiant();
+void testValidation();
 
 int main(int argc,char **argv)
 {
@@ -124,4 +126,7 @@ void testEtudiant() {
     fichier.endGroup();
 }
 
+void testValidation() {
+    Etudiant& compte = Etudiant::login("ami");
 
+}

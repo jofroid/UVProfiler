@@ -7,7 +7,11 @@
 #include <QMap>
 #include <QString>
 #include "criteresvalidationfiliere.h"
+#include "cursus.h"
 #include "uv.h"
+#include "uvmanager.h"
+#include "inscription.h"
+#include "etudiant.h"
 
 /**
  * @brief The UVObligatoires class Classe representant une liste d'UV a valider. Herite de CriteresValidationFiliere

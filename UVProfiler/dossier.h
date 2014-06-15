@@ -113,14 +113,11 @@ public:
     Filiere&     getFiliere()     { return *_filiere;        }
     Filiere&     getMineur()      { return *_mineur;         }
     Inscription& getInscription(const Semestre& semestre) { return *_inscriptions[semestre]; }
+    QMap<Semestre, Inscription*> getInscriptions() { return _inscriptions; }
     EnsCredits   getTotalCreditsPostBac() { return _creditsTotauxPostBac; }
     EnsCredits   getTotalCreditsBranche() { return _creditsTotauxBranche; }
 
     // Other functions
-    /**
-     * @brief load Charge un dossier soit depuis un fichier, soit depuis la BDD
-     */
-    void load();
     /**
      * @brief addInscription Ajoute une inscription au dossier
      * @param inscription inscription a ajouter

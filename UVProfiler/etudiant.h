@@ -21,13 +21,16 @@ private:
     /**
      * @brief _dossier Map des dossiers lies a l'etudiant
      */
-    QMap<QString, Dossier*> _dossier;
+    Dossier* _dossier;
     /**
      * @brief _instance Instance unique de l'etudiant utilisateur en cours
      */
     static Etudiant* _instance;
-    //A rajouter à la doc'
-    Etudiant(const EtudiantData& data) : EtudiantData(data) {}
+
+    Etudiant(const EtudiantData& data);
+    void loadDossier();
+    void loadDossierFromFile();
+    void loadDossierFromDB();
 public:
     ~Etudiant();
     /**
@@ -51,6 +54,9 @@ public:
 
     /*Getters*/
     static Etudiant& getInstance();
+
+    void setDossier(Dossier* dossier) { _dossier=dossier; }
+    Dossier* getDossier() { return _dossier; }
 };
 
 #endif // ETUDIANT_H

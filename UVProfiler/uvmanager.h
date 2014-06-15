@@ -48,6 +48,8 @@ private:
     UVManager();
     ~UVManager();
 
+    QString _file;
+    bool _modification;
     /**
      * @brief _uvs Map des differentes UVs
      */

@@ -13,15 +13,16 @@
 #include "uv.h"
 
 /**
+ * @brief The typeInscription enum Enumeartion du type de l'inscription : a l'UTC ou a l'etranger
+ */
+enum typeInscription { tsemestreUTC, tsemestreEtranger};
+
+/**
  * @brief The Inscription class Classe abstraite representant une inscription a un semestre (liste d'UV, cursus en cours...)
  */
 class Inscription
 {
 protected:
-    /**
-     * @brief The typeInscription enum Enumeartion du type de l'inscription : a l'UTC ou a l'etranger
-     */
-    enum typeInscription { tsemestreUTC, tsemestreEtranger};
     /**
      * @brief _type Type de l'inscription
      */
@@ -52,6 +53,8 @@ public:
     Cursus* getCursus() { return _cursusEnCours; }
     const Semestre& getSemestre() { return _semestre; }
     virtual EnsCredits getCredits()=0;
+    typeInscription getType() { return _type; }
+    virtual QMap<QString, Notes> getNotes() {}
 };
 
 #endif // INSCRIPTION_H

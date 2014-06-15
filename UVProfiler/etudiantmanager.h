@@ -33,6 +33,10 @@ private:
     void loadFromFile();
     void saveToFile();
 public:
+
+    void addEtudiant( EtudiantData& data) { _etudiants.insert(data.getLogin(), new EtudiantData( data)); }
+    void removeEtudiant( QString login) { _etudiants.remove(login); }
+
     /*Getters*/
     static EtudiantManager& getInstance() {
         if(!_instance)

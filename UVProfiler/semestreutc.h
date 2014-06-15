@@ -60,10 +60,12 @@ public:
 
     /*Getters*/
     QMap<QString, UV*> getUV()  { return _choixUVs;                                                          }
+    virtual QMap<QString, Notes> getNotes() { return _notes; }
+
 
     /*Setters*/
     void setNote(const QString& code, const Notes& note);
-    void setNote(UV* uv,             const Notes& note);
+    void setNote(UV* uv,              const Notes& note);
 
     EnsCredits getCredits();
 };
