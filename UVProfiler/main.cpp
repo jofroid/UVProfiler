@@ -57,7 +57,7 @@ int main(int argc,char **argv)
             //std::cout<<uvTest.getNom().toStdString()<<std::endl;
 */
             testEtudiant();
-            std::cout<<"Coucou!\nIt's done\n";
+            std::cout<<"\nDone\n";
 
     }
     catch (UTProfilerException utpe) {

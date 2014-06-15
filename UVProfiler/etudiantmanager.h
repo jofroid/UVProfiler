@@ -6,33 +6,41 @@
   */
 #include <QMap>
 #include <QString>
+#include <QFile>
+#include <QSettings>
 #include "etudiantdata.h"
 
 /**
  * @brief The etudiantManager class Classe representant le manager d'etudiants
  */
-class etudiantManager
+class EtudiantManager
 {
 private:
     /**
      * @brief _instance Instance de etudiantManager
      */
-    static etudiantManager* _instance;
+    static EtudiantManager* _instance;
     /**
      * @brief _etudiants Map des differents etudiants
      */
     QMap<QString, EtudiantData*> _etudiants;
     /**
-     * @brief etudiantManager Constructer de base
+     * @brief etudiantManager Constructeur de base
      */
-    etudiantManager();
+    EtudiantManager();
+    ~EtudiantManager();
+
+    void loadFromFile();
+    void saveToFile();
 public:
     /*Getters*/
-    etudiantManager& getInstance() {
+    static EtudiantManager& getInstance() {
         if(!_instance)
-            _instance = new etudiantManager;
+            _instance = new EtudiantManager;
         return *_instance;
     }
+
+    EtudiantData& getEtudiant(QString login); // retourne un étudiant dont les champs sont vides en cas d'échec
 };
 
 #endif // ETUDIANTMANAGER_H

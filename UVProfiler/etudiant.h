@@ -10,6 +10,7 @@
 #include "UVProfiler.h"
 #include "dossier.h"
 #include "etudiantdata.h"
+#include "etudiantmanager.h"
 
 /**
  * @brief The Etudiant class Represente un etudiant UTC
@@ -25,23 +26,18 @@ private:
      * @brief _instance Instance unique de l'etudiant utilisateur en cours
      */
     static Etudiant* _instance;
-    /**
-     * @brief Etudiant Constructeur de base
-     * @param username login de l'etudiant
-     * @param nom Nom de l'etudiant
-     * @param prenom Prenom de l'etudiant
-     */
-    Etudiant(QString username, QString nom, QString prenom);
+    //A rajouter à la doc'
+    Etudiant(const EtudiantData& data) : EtudiantData(data) {}
 public:
     ~Etudiant();
     /**
      * @brief createAccount Cree un compte etudiant
-     * @param username login de l'etudiant
+     * @param login login de l'etudiant
      * @param nom Nom de l'etudiant
      * @param prenom Prenom de l'etudiant
      * @return L'instance unique de l'etudiant
      */
-    static Etudiant& createAccount(QString username, QString nom, QString prenom);
+    static Etudiant& createAccount(QString login, QString nom, QString prenom);
     /**
      * @brief login Connecte un etudiant
      * @param username login de l'etudiant
@@ -50,9 +46,8 @@ public:
     static Etudiant& login(QString username);
     /**
      * @brief logout Deconnecte un etudiant
-     * @return true si la deconnection a fonctionne, false sinon
      */
-    static bool logout();
+    static void logout();
 
     /*Getters*/
     static Etudiant& getInstance();

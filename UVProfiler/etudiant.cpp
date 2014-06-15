@@ -2,23 +2,30 @@
 
 Etudiant* Etudiant::_instance(NULL);
 
-Etudiant::Etudiant(QString login, QString nom, QString prenom) : EtudiantData(login, nom, prenom) {
-
-}
-
 Etudiant::~Etudiant() {}
 
 
 
-Etudiant& Etudiant::createAccount(QString username, QString nom, QString prenom) {
+Etudiant& Etudiant::createAccount(QString login, QString nom, QString prenom) {
     if(!_instance) // Donc si un étudiant est déjà en cours d'utilisation
         delete _instance; // On déconnecte l'étudiant en cours
-    _instance = new Etudiant(username, nom, prenom);
+    EtudiantData data(login, nom, prenom);
+    _instance = new Etudiant( data);
     return *_instance;
 }
 
-static Etudiant& login(QString username) {
-
+Etudiant& Etudiant::login(QString login) {
+    if(!_instance) // Donc si un étudiant est déjà en cours d'utilisation
+        delete _instance; // On déconnecte l'étudiant en cours
+    EtudiantData data(EtudiantManager::getInstance().getEtudiant(login) );
+    if(data.getLogin()== "" )
+        throw UTProfilerException(QString("erreur dans Etudiant, le login ")+login+QString(" n'existe pas"));
+    _instance = new Etudiant( data);
+    return *_instance;
 }
 
+void Etudiant::logout() {
+    if(!_instance)
+        delete _instance;
+}
 

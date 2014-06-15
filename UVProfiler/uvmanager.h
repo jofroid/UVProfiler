@@ -10,13 +10,7 @@
 #include "sp.h"
 #include <QtSql>
 
-class UTProfilerException{
-public:
-   UTProfilerException(const QString& message):info(message){}
-   QString getInfo() const { return info; }
-private:
-   QString info;
-};
+
 
 enum typeOuverture { fichier, DB };
 

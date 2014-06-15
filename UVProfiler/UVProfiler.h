@@ -9,7 +9,6 @@
 #include "cs.h"
 #include "cursus.h"
 #include "cursusmanager.h"
-#include "decorateurmineur.h" // Est-il toujours utile d'ailleurs ?
 #include "dossier.h"
 #include "enscredits.h"
 #include "etudiant.h"
@@ -36,4 +35,13 @@ enum Saison { P, Aut, PA, X };
 QString& operator<<(QString& out, Saison saison);
 
 enum Notes { A, B, C, D, E, FX, F, enCours};
+
+class UTProfilerException{
+public:
+   UTProfilerException(const QString& message):info(message){}
+   QString getInfo() const { return info; }
+private:
+   QString info;
+};
+
 #endif // UVPROFILER
