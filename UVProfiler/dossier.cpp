@@ -68,14 +68,6 @@ void Dossier::setCreditsPostBac(const EnsCredits& credits) { // Dans le cas où 
 }
 
 void Dossier::updateCreditsPostBac() {
-    // Parcourir toutes les inscriptions du tableau donc le cursus a la même valeur que _postBac, et additionner les
-    //      credits dont la notes est supérieur à FX (en pratique, inférieur car c'est une enum).
-    // Ou alors, rajouter un champ _créditsObtenus dans la classe Inscription, et une fonction updateCredits que l'on
-    //      appelerai à chaque fois que l'on ajoute une note ou retire une UV.
-    // C'est toi qui voit, mais je pense qu'on aura un soucis avec le pronostic du semestreEtranger, à moins qu'on
-    //      rajoute un champ _creditsObtenus que l'on remplit à la fin du semestre à l'étranger avec le nombre de
-    //      crédits obtenus...
-
     if(_postBac) { // Donc si on a fait la prépa intégrée de l'UT
         QMap<Semestre, Inscription*>::const_iterator it;
         EnsCredits total;
@@ -84,8 +76,6 @@ void Dossier::updateCreditsPostBac() {
                 total+=it.value()->getCredits();
             }
         }
-        std::cout<<"\ntotal update:\n";
-        total.afficheEnsCredits();
         _creditsTotauxPostBac=total;
     }
 }
@@ -99,9 +89,20 @@ void Dossier::updateCreditsBranche() {
                 total+=it.value()->getCredits();
             }
         }
-        std::cout<<"\ntotal update:\n";
-        total.afficheEnsCredits();
         _creditsTotauxBranche=total;
+    }
+}
+
+void Dossier::updateCreditsFiliere() {
+    if(_filiere) { // Donc si on est en filiere
+        QMap<Semestre, Inscription*>::const_iterator it;
+        EnsCredits total;
+        for(it=_inscriptions.constBegin(); it!=_inscriptions.constEnd(); ++it) {
+            if( it.value()->getCursus() == _filiere) { // Donc si l'inscription concerne notre branche
+                total+=it.value()->getCredits();
+            }
+        }
+        _creditsTotauxFiliere=total;
     }
 }
 

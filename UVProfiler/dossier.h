@@ -62,6 +62,10 @@ private:
      */
     EnsCredits _creditsTotauxBranche;
     /**
+     * @brief _creditsTotauxBrancheFiliere Total des credits obtenus en filière
+     */
+    EnsCredits _creditsTotauxFiliere;
+    /**
      * @brief load Charge un dossier soit depuis un fichier, soit depuis la BDD
      */
     void load();
@@ -81,6 +85,10 @@ private:
      * @brief updateCreditsBranche Met a jour le nombre de credits branche obtenu
      */
     void updateCreditsBranche();
+    /**
+     * @brief updateCreditsFiliere Met a jour le nombre de credits de filière obtenu
+     */
+    void updateCreditsFiliere();
 public:
     /**
      * @brief Dossier Constructeur de base

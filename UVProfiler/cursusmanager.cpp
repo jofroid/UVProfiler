@@ -39,6 +39,10 @@ void CursusManager::addBranche(const QString& nom, const QString& code, const QS
     _branche.insert(code, new Branche(nom, code, description, creditsNecessaires) );
 }
 
+void CursusManager::addFiliere(const QString& nom, const QString& code, const QString& description, const EnsCredits creditsNecessaires = EnsCredits() ) {
+    _filiere.insert(code, new Filiere(nom, code, description, creditsNecessaires) );
+}
+
 void CursusManager::addPostBac(const QString& nom, const QString& code, const QString& description, const EnsCredits creditsNecessaires ) {
     _postBac.insert(code, new PostBac(nom, code, description, creditsNecessaires) );
 }

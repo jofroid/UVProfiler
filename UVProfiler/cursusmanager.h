@@ -104,7 +104,7 @@ public:
      */
     void printPostBac();
     /**
-     * @brief addBranche Ajoute une branche dans le manager
+     * @brief addBranche Ajoute une branche au le manager
      * @param nom Nom de la branche
      * @param code Code de la branche
      * @param description Description de la branche
@@ -112,7 +112,15 @@ public:
      */
     void addBranche(const QString& nom, const QString& code, const QString& description, const EnsCredits creditsNecessaires = EnsCredits() );
     /**
-     * @brief addPostBac Ajoute une branche dans le manager
+     * @brief addFiliere Ajoute une branche au le manager
+     * @param nom Nom de la filiere
+     * @param code Code de la filiere
+     * @param description Description de la filiere
+     * @param creditsNecessaires Nombre de credits necessaire a la validation de la filiere
+     */
+    void addFiliere(const QString& nom, const QString& code, const QString& description, const EnsCredits creditsNecessaires = EnsCredits() );
+    /**
+     * @brief addPostBac Ajoute un cursus post-BAC au le manager
      * @param nom Nom du postbac
      * @param code Code du postbac
      * @param description Description du postbac
