@@ -2,19 +2,24 @@
 #include <QPushButton>
 #include <iostream>
 #include <QtSql>
+#include <QFile>
+#include <QSettings>
+#include <QMap>
 #include "uvmanager.h"
 #include "cursusmanager.h"
 #include "uv.h"
 #include "cs.h"
 #include "semestre.h"
 #include "semestreutc.h"
+#include "etudiantdata.h"
 #include "dossier.h"
 #include "windows.h"
 
 #define q2c(string) string.toStdString()
 
 void initFileSystem();
-void a();
+void testDossier();
+void testEtudiant();
 
 int main(int argc,char **argv)
 {
@@ -51,7 +56,7 @@ int main(int argc,char **argv)
             //uvTest = manager.getUV("TN01");
             //std::cout<<uvTest.getNom().toStdString()<<std::endl;
 */
-            a();
+            testEtudiant();
             std::cout<<"Coucou!\nIt's done\n";
 
     }
@@ -65,12 +70,13 @@ void initFileSystem() {
     EnsCredits::initEnsCreditsSystem();
     Branche::initBrancheSystem();
     Semestre::initSemestreSystem();
+    EtudiantData::initEtudiantDataFileSystem();
 }
 
 
 
 
-void a() {
+void testDossier() {
     PostBac postbac("TC", "TC", "tronc commun", EnsCredits(1,1,1,2));
     Dossier dossier("amirgalet");
     dossier.setPostBac( &postbac);
@@ -92,6 +98,30 @@ void a() {
 
 }
 
+void testEtudiant() {
+    QMap<QString, EtudiantData*> liste1, liste2;
+    EtudiantData a("ami", "mi", "a"), b("gdie", "die", "g");
+    liste1.insert(a.getLogin(), &a);
+    liste1.insert(b.getLogin(), &b);
 
+    QSettings fichier("UVProfiler.ini", QSettings::IniFormat);
+    fichier.beginGroup("etudiant");
+    QMap<QString, EtudiantData*>::const_iterator it;
+    for(it=liste1.constBegin(); it!=liste1.constEnd(); ++it) {
+        fichier.setValue(it.value()->getLogin(), QVariant::fromValue(*it.value() ));
+    }
+    fichier.endGroup();
+    fichier.sync();
+
+    int i(0);
+    fichier.beginGroup("etudiant");
+    const QStringList childKeys = fichier.childKeys();
+    foreach (const QString& childKey, childKeys) {
+        EtudiantData copie( fichier.value(childKey, QVariant::fromValue(EtudiantData() )).value<EtudiantData>() );
+        std::cout<<i<<": "<<copie.getLogin().toStdString()<<std::endl; i++;
+        liste2.insert(copie.getLogin(), &copie);
+    }
+    fichier.endGroup();
+}
 
 
