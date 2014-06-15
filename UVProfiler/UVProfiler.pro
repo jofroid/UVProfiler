@@ -58,4 +58,5 @@ HEADERS += \
     UVProfiler.h \
     etudiantdata.h \
     etudiantdata.h \
-    dossierdata.h
+    dossierdata.h \
+    Fenetre.h

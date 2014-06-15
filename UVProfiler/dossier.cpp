@@ -1,7 +1,15 @@
 #include "dossier.h"
 
-Dossier::Dossier(QString username) : _login(username), _postBac(0), _branche(0), _filiere(0), _mineur(0) {
+Dossier::Dossier(QString username) : _login(username), _semestreB(0), _semestrePB(0),_postBac(0), _branche(0),
+    _filiere(0), _mineur(0) {
     load();
+}
+Dossier::Dossier(DossierData& data) : _login(data.getlogin()), _semestreB(data.getSemestreB()),\
+    _semestrePB(data.getSemestrePB()) {
+    _postBac = CursusManager::getInstance().getPostBac(data.getPostBac());
+    _branche = CursusManager::getInstance().getBranche(data.getBranche());
+    _filiere = CursusManager::getInstance().getFiliere(data.getFiliere());
+    _mineur  = CursusManager::getInstance().getFiliere(data.getMineur() );
 }
 
 

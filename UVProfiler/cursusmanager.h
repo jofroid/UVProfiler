@@ -132,16 +132,16 @@ public:
     void addPostBac(const QString& nom, const QString& code, const QString& description, const EnsCredits creditsNecessaires = EnsCredits() );
 
     /*Getters*/
-    Branche* getBranche(QString& branche) {
+    Branche* getBranche(QString branche) {
         if(_branche.contains(branche) )
             return _branche[branche]; }
-    Filiere* getFiliere(QString& filiere) {
+    Filiere* getFiliere(QString filiere) {
         if(_filiere.contains(filiere) )
             return _filiere[filiere]; }
-    PostBac* getPostBac(QString& postBac) {
+    PostBac* getPostBac(QString postBac) {
         if(_postBac.contains(postBac) )
             return _postBac[postBac]; }
-    Cursus* getCursus(QString& code) {
+    Cursus* getCursus(QString code) {
         if(getBranche(code))
             return getBranche(code);
         if(getFiliere(code))
