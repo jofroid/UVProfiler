@@ -61,5 +61,3 @@ HEADERS += \
     dossierdata.h \
 
 FORMS += \
-    ../interface v0.1 .ui
-    Fenetre.h

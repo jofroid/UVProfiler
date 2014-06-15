@@ -15,7 +15,6 @@
 #include "etudiant.h"
 #include "etudiantdata.h"
 #include "etudiantmanager.h"
-#include "Fenetre.h"
 #include "filiere.h"
 #include "inscription.h"
 #include "mineur.h"

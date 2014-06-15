@@ -48,6 +48,9 @@ private:
     UVManager();
     ~UVManager();
 
+    /**
+     * @brief _file Choix du mode de save/load
+     */
     QString _file;
     bool _modification;
     /**
