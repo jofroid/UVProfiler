@@ -48,7 +48,7 @@ public:
     void addEtudiant( EtudiantData& data) { _etudiants.insert(data.getLogin(), new EtudiantData( data)); }
     /**
      * @brief removeEtudiant Supprime un etudiant
-     * @param login login de l'etudiant a supprimer
+     * @param login Login de l'etudiant a supprimer
      */
     void removeEtudiant( QString login) { _etudiants.remove(login); }
     /**

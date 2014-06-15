@@ -42,7 +42,7 @@ public:
         Inscription(tsemestreEtranger, copie._semestre, copie._cursusEnCours), _pronosticCreditsMax(copie._pronosticCreditsMax),
         _pronosticCreditsMin(copie._pronosticCreditsMin), _creditsObtenus(copie._creditsObtenus) {}
     /**
-     * @brief SemestreEtranger Constructeur de base
+     * @brief SemestreEtranger Constructeur de initialisant tous lesattributs de l'objet
      * @param semestre Semestre associe
      * @param cursus Cursus associe
      * @param pronosticCreditsMin Marge inferieur estimee des credits obtenus
