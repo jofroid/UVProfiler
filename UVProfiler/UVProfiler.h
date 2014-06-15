@@ -9,7 +9,6 @@
 #include "cs.h"
 #include "cursus.h"
 #include "cursusmanager.h"
-#include "decorateurmineur.h" // Est-il toujours utile d'ailleurs ?
 #include "dossier.h"
 #include "enscredits.h"
 #include "etudiant.h"
@@ -28,7 +27,7 @@
 #include "tsh.h"
 #include "uv.h"
 #include "uvmanager.h"
-#include "uvobligatoires.h" //*/
+#include "uvobligatoires.h" */
 
 #define NULLPTR 0
 

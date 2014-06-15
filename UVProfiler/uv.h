@@ -1,6 +1,9 @@
 #ifndef UV_H
 #define UV_H
 
+/**
+  * @file uv.h
+  */
 #include <QString>
 #include <QVector>
 #include "cursus.h"
@@ -10,14 +13,35 @@
 
 using namespace std;
 
+/**
+ * @brief The UV class Classe abstraite representant une UV
+ */
 class UV
 {
 private:
+    /**
+     * @brief _nom Nom de l'UV
+     */
     QString _nom;
+    /**
+     * @brief _code Code del'UV
+     */
     QString _code;
+    /**
+     * @brief _saison Saison pendant laquelle l'UV est enseignee
+     */
     Saison _saison;
+    /**
+     * @brief _creditsDelivres Ensmble de credits donne par l'UV
+     */
     EnsCredits _creditsDelivres;
 public:
+    /**
+     * @brief UV Constructeur de base
+     * @param nom Nom de l'UV
+     * @param code Code de l'UV
+     * @param saison Saison pendant laquelle l'UV est enseignee
+     */
     UV(const QString nom, const QString code, const Saison saison): _nom(nom), _code(code), _saison(saison), _creditsDelivres(0){}
 
     // Setters
@@ -37,7 +61,6 @@ public:
     virtual const QString getColonneTSH()=0;
     virtual const QString getLigneTSH()  =0;
 
-    //Autres méthodes
 
 };
 

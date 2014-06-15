@@ -11,7 +11,7 @@
 #include "cursus.h"
 
 /**
- * @brief The SemestreEtranger class Classe representant un semestre a l'etranger (hors UTC)
+ * @brief The SemestreEtranger class Classe representant un semestre a l'etranger (hors UTC). Herite de Inscription
  */
 class SemestreEtranger: public Inscription
 {
@@ -30,6 +30,13 @@ private:
     EnsCredits _creditsObtenus;
 
 public:
+    /**
+     * @brief SemestreEtranger Constructeur de base
+     * @param semestre Semestre associe
+     * @param cursus Cursus associe
+     * @param pronosticCreditsMin Marge inferieur estimee des credits obtenus
+     * @param pronosticCreditsMax Marge superieur estimee des credits obtenus
+     */
     SemestreEtranger(const Semestre& semestre, Cursus* cursus, const EnsCredits& pronosticCreditsMin, const EnsCredits& pronosticCreditsMax):\
         Inscription(tsemestreEtranger, semestre, cursus), _pronosticCreditsMin(pronosticCreditsMin), _pronosticCreditsMax(pronosticCreditsMax){}
 
