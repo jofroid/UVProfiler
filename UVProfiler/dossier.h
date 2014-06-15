@@ -7,6 +7,7 @@
 #include <QtSql>
 #include <QMap>
 #include <QString>
+#include <iostream>
 #include "dossierdata.h"
 #include "postbac.h"
 #include "branche.h"
@@ -124,18 +125,18 @@ public:
     void setCreditsPostBac(const EnsCredits& credits);
 
     // Getters
-    QString      getlogin()       { return _login;           }
-    unsigned int getSemestrePB()  { return _semestrePB;      }
-    unsigned int getSemestreB()   { return _semestreB;       }
-    PostBac&     getPostBac()     { return *_postBac;        }
-    Branche&     getBranche()     { return *_branche;        }
-    Filiere&     getFiliere()     { return *_filiere;        }
-    Filiere&     getMineur()      { return *_mineur;         }
+    QString      getlogin()       const { return _login;           }
+    unsigned int getSemestrePB()  const { return _semestrePB;      }
+    unsigned int getSemestreB()   const { return _semestreB;       }
+    PostBac&     getPostBac()     const { return *_postBac;        }
+    Branche&     getBranche()     const { return *_branche;        }
+    Filiere&     getFiliere()     const { return *_filiere;        }
+    Filiere&     getMineur()      const { return *_mineur;         }
     Inscription& getInscription(const Semestre& semestre) { return *_inscriptions[semestre]; }
     QMap<Semestre, Inscription*> getInscriptions() { return _inscriptions; }
-    EnsCredits   getTotalCreditsPostBac() { return _creditsTotauxPostBac; }
-    EnsCredits   getTotalCreditsBranche() { return _creditsTotauxBranche; }
-    EnsCredits   getTotalCreditsFiliere() { return _creditsTotauxFiliere; }
+    EnsCredits   getTotalCreditsPostBac() const { return _creditsTotauxPostBac; }
+    EnsCredits   getTotalCreditsBranche() const { return _creditsTotauxBranche; }
+    EnsCredits   getTotalCreditsFiliere() const { return _creditsTotauxFiliere; }
 
     // Other functions
     /**
@@ -148,7 +149,7 @@ public:
      */
     void updateCredits();
 
-    void loada() { load();}
+    void loada() { load(); }
     void savea() { saveToFile();}
 };
 

@@ -33,7 +33,7 @@ protected:
     EnsCredits _creditsNecessaires;
 public:
     /**
-     * @brief Cursus Constructeur de base
+     * @brief Cursus Constructeur de base, necessaire pour la récupération à partir de fichier
      */
     Cursus() : _nom(""), _code(""), _description(""), _creditsNecessaires(EnsCredits() ) {}
 
@@ -48,14 +48,14 @@ public:
         _nom(nom), _code(code), _description(description), _creditsNecessaires(creditNecessaires) {}
 
     /**
-     * @brief ~Cursus Destructeur virtuel pur permettant de rendre la classe abstraite
+     * @brief ~Cursus Destructeur
      */
-    virtual ~Cursus()=0;
+    ~Cursus();
 
     /*Getters*/
-    void setNom(const QString& nom)                     {_nom = nom;}
-    void setCode(const QString& code)                   {_code = code;}
-    void setDescription(const QString& description)     {_description = description;}
+    void setNom(const QString& nom)                     { _nom = nom;}
+    void setCode(const QString& code)                   { _code = code;}
+    void setDescription(const QString& description)     { _description = description;}
     void setEnsCredits(const EnsCredits& creditsNedessaires){_creditsNecessaires = creditsNedessaires;}
 	
     /*Setters*/
@@ -63,7 +63,14 @@ public:
     QString getCode()                   { return _code;                 }
     QString getDescription()            { return _description;          }
     EnsCredits getCreditsNecessaires()  { return _creditsNecessaires;   }
+
+    virtual void serialize(QDataStream& stream);
+    virtual void unserialize(QDataStream& stream);
 };
+
+Q_DECLARE_METATYPE(Cursus)
+QDataStream& operator<< (QDataStream& out, const Cursus& valeur);
+QDataStream& operator>> (QDataStream& in, Cursus& valeur);
 
 
 

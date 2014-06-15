@@ -140,12 +140,14 @@ void testEtudiant() {
 }
 
 void testValidation() {
-    Etudiant& alex = Etudiant::createAccount("test", "alpha", "beta");
-    alex.logout();
+    std::cout<<"Liste des etudiants charges :\n";
     EtudiantManager::getInstance().printEtudiant();
     Etudiant& a = Etudiant::login("bjamai");
     Dossier& dossier = *a.getDossier();
+    dossier.savea();
 
 
+
+    a.logout();
     EtudiantManager::getInstance().close();
 }

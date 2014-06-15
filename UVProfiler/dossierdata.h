@@ -21,7 +21,7 @@ protected:
     QString _filiere;
     QString _mineur;
 public:
-    DossierData(Dossier source);
+    DossierData(const Dossier& source);
     DossierData();
     DossierData(const DossierData& copie);
 

@@ -92,6 +92,7 @@ void Dossier::saveToFile() {
     QSettings fichier("UVProfiler.ini", QSettings::IniFormat);
 
     fichier.beginGroup("dossier"); // On sauvegarde la partie dossier
+
     DossierData data(*this);
     fichier.setValue(data.getlogin(), QVariant::fromValue(data));
     fichier.endGroup();
@@ -100,7 +101,8 @@ void Dossier::saveToFile() {
     QSettings fichierInscription("Inscription.ini", QSettings::IniFormat);
     fichierInscription.beginGroup(data.getlogin()); // On sauvegarde la partie inscription
     QMap<Semestre, Inscription*>::iterator it;
-    for(it=_inscriptions.begin(); it!=_inscriptions.end(); it++) {
+    int i(0);
+    for(it=_inscriptions.begin(); it!=_inscriptions.end(); it++) {std::cout<<i<<"\n";i++;
         fichierInscription.setValue("", QVariant::fromValue( *(it.value()) ) );
     }
     fichierInscription.endGroup();

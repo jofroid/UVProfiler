@@ -1,6 +1,6 @@
 #include "dossierdata.h"
 
-DossierData::DossierData(Dossier source): _login(source.getlogin()), _semestreB(source.getSemestreB()),\
+DossierData::DossierData(const Dossier& source): _login(source.getlogin()), _semestreB(source.getSemestreB()),\
     _semestrePB(source.getSemestrePB()), _postBac(""), _branche(""), _filiere(""), _mineur("")
 {
     if(&source.getPostBac())
