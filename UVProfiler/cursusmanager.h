@@ -41,10 +41,6 @@ private:
      */
     CursusManager();
     /**
-     * @brief load Charge l'ensemble des cursus dans le manager soit par fichier, soit par BDD
-     */
-    void load();
-    /**
      * @brief loadBrancheFromFile Charge les branches dans le manager par un fichier
      */
     void loadBrancheFromFile();
@@ -91,6 +87,10 @@ public:
      * @brief save Sauvegarde l'ensemble des cursus dans le manager soit par fichier, soit par BDD
      */
     void save();
+    /**
+     * @brief load Charge l'ensemble des cursus dans le manager soit par fichier, soit par BDD
+     */
+    void load();
     /**
      * @brief printBranche Affiche les branches
      */

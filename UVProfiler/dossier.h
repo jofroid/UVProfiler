@@ -102,7 +102,7 @@ public:
     void setPostBac     (PostBac* postBac)  { _postBac      = postBac;  }
     void setBranche     (Branche* branche)  { _branche      = branche;  }
     void setFiliere     (Filiere* filiere)  { _filiere      = filiere;  }
-    void setMineur      (Filiere* mineur)   { _mineur       = mineur;   } // Dois-je mettre un test pour vérifier que c'est un mineur ?
+    void setMineur      (Filiere* mineur)   { _mineur       = mineur;   }
     void setCreditsPostBac(const EnsCredits& credits);
 
     // Getters
@@ -117,6 +117,10 @@ public:
     EnsCredits   getTotalCreditsBranche() { return _creditsTotauxBranche; }
 
     // Other functions
+    /**
+     * @brief load Charge un dossier soit depuis un fichier, soit depuis la BDD
+     */
+    void load();
     /**
      * @brief addInscription Ajoute une inscription au dossier
      * @param inscription inscription a ajouter
